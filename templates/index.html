@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alejandro Monroy | Data Scientist & Backend Specialist</title>
+    <!-- Jinja2 inyecta la ruta estática correcta hacia nuestro CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">AM.</div>
+            <ul class="nav-links">
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#galeria">Proceso Visual</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN HERO CON PANEL DIVIDIDO -->
+    <section id="hero" class="hero-section">
+        <div class="glass-panel hero-glass">
+            
+            <!-- COLUMNA IZQUIERDA: COMPOSICIÓN DEL PERFIL (EL 100%) -->
+            <div class="hero-metrics">
+                <h3 class="metrics-title">Composición del Perfil</h3>
+                
+                <div class="composition-container">
+                    <!-- Gráfico de Anillo Único (El 100%) -->
+                    <div class="composition-chart">
+                        <div class="composition-inner">
+                            <span class="composition-total">100%</span>
+                            <span class="composition-label">Integral</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Leyenda Descriptiva de Datos (AHORA INTERACTIVA CON JS) -->
+                    <div class="composition-legend">
+                        
+                        <!-- Añadimos id="legend-tech" -->
+                        <a href="#habilidades" class="legend-item" id="legend-tech">
+                            <span class="legend-color tech-color"></span>
+                            <div class="legend-text">
+                                <span class="legend-title">50% Ing. & Datos</span>
+                                <span class="legend-desc">Python, SQL, n8n, APIs</span>
+                            </div>
+                        </a>
+                        
+                        <!-- Añadimos id="legend-log" -->
+                        <a href="#proyectos" class="legend-item" id="legend-log">
+                            <span class="legend-color log-color"></span>
+                            <div class="legend-text">
+                                <span class="legend-title">30% Logística & Ops.</span>
+                                <span class="legend-desc">Supply Chain, KPIs</span>
+                            </div>
+                        </a>
+                        
+                        <!-- Añadimos id="legend-art" -->
+                        <a href="#galeria" class="legend-item" id="legend-art">
+                            <span class="legend-color art-color"></span>
+                            <div class="legend-text">
+                                <span class="legend-title">20% Síntesis Visual</span>
+                                <span class="legend-desc">Estructura, Diseño, Arte</span>
+                            </div>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: PRESENTACIÓN PRINCIPAL -->
+            <div class="hero-content">
+                <!-- La etiqueta span inyecta el acento vibrante en tu nombre -->
+                <h1>Hola, soy <span>Alejandro Monroy</span></h1>
+                <h2>Data Scientist & Backend Integration Specialist</h2>
+                <p>Construyo arquitecturas robustas, automatizo operaciones comerciales y diseño integraciones backend precisas para optimizar procesos a escala.</p>
+                
+                <div class="cta-container">
+                    <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+                    <!-- Enlace directo a WhatsApp -->
+                    <a href="https://wa.me/5219987671050?text=Hola%20Alejandro,%20he%20visto%20tu%20portafolio%20técnico%20y%20me%20gustaría%20contactarte." class="btn btn-secondary" target="_blank">Contactar</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- SECCIÓN: PROYECTOS DESTACADOS -->
+    <section id="proyectos" class="portfolio-section">
+        <div class="section-container">
+            <h2 class="section-title">Casos de Estudio Técnicos</h2>
+            <div class="projects-grid">
+                
+                <!-- Proyecto 1: Proyecto Gran Blanco -->
+                <article class="project-card glass-panel-alt">
+                    <div class="project-content">
+                        <h3>Proyecto Gran Blanco (B2B CRM & Automated Architecture)</h3>
+                        <p class="project-date">Enero 2026 - Presente | TSA Comercial / Indep.</p>
+                        <p class="project-description">Arquitectura de mensajería empresarial B2B automatizada mediante WhatsApp Cloud API, integrada con base de datos PostgreSQL, Docker, flujos orquestados en n8n, Python y SAP Business One.</p>
+                        <h4>Impacto & Resultados:</h4>
+                        <ul class="project-impact">
+                            <li>Reducción drástica del tiempo de respuesta a cuentas corporativas.</li>
+                            <li>Autogestión de consultas, catálogos y operaciones de carrito para clientes B2B.</li>
+                        </ul>
+                        <div class="tech-stack-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">n8n</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">WhatsApp API</span>
+                            <span class="tag">Gemini API</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Proyecto 2: Optimización Logística y Análisis de Datos -->
+                <article class="project-card glass-panel-alt">
+                    <div class="project-content">
+                        <h3>Optimización Logística (Supply Chain & Warehousing)</h3>
+                        <p class="project-date">2026 | TripleTen Sprint 8</p>
+                        <p class="project-description">Modelado de bases de datos relacionales, extracción (web scraping) y análisis de métricas clave (KPIs) de inventario para la toma de decisiones basada en datos.</p>
+                        <h4>Impacto & Resultados:</h4>
+                        <ul class="project-impact">
+                            <li>Consolidación de un entorno de datos optimizado listo para machine learning.</li>
+                            <li>Identificación y reducción de cuellos de botella operativos mediante análisis de variables complejas.</li>
+                        </ul>
+                        <div class="tech-stack-tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">DBeaver</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">Bases de Datos Relacionales</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: HABILIDADES TÉCNICAS (DASHBOARD INTERACTIVO) -->
+    <section id="habilidades" class="skills-section bg-alt">
+        <div class="section-container">
+            <h2 class="section-title">Stack Tecnológico & Capacidades</h2>
+            
+            <!-- PARTE SUPERIOR: GRÁFICAS CIRCULARES (ATRACTORES VISUALES) -->
+            <div class="circular-charts-grid">
+                
+                <!-- Círculo 1: Backend & DBs -->
+                <a href="#detalles-backend" class="chart-anchor">
+                    <div class="circular-chart" style="--progreso: 90%;">
+                        <div class="inner-circle">
+                            <span class="chart-percentage">90%</span>
+                            <span class="chart-label">Backend & DBs</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Círculo 2: Infraestructura & APIs -->
+                <a href="#detalles-infra" class="chart-anchor">
+                    <div class="circular-chart" style="--progreso: 85%;">
+                        <div class="inner-circle">
+                            <span class="chart-percentage">85%</span>
+                            <span class="chart-label">Infraestructura</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Círculo 3: Frontend & IA -->
+                <a href="#detalles-frontend" class="chart-anchor">
+                    <div class="circular-chart" style="--progreso: 80%;">
+                        <div class="inner-circle">
+                            <span class="chart-percentage">80%</span>
+                            <span class="chart-label">Frontend & IA</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PARTE INFERIOR: TARJETAS DESCRIPTIVAS DETALLADAS -->
+            <div class="detailed-cards-grid">
+                
+                <!-- Tarjeta 1: Backend -->
+                <div id="detalles-backend" class="skill-category glass-panel-alt">
+                    <h3>Backend, Datos & DBs</h3>
+                    <ul class="skill-list">
+                        <li><strong>Lenguajes:</strong> Python, SQL, JavaScript</li>
+                        <li><strong>Frameworks:</strong> Flask</li>
+                        <li><strong>Bases de Datos:</strong> PostgreSQL, MySQL</li>
+                        <li><strong>Data Science:</strong> Pandas, NumPy, Matplotlib, Seaborn</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 2: Infraestructura -->
+                <div id="detalles-infra" class="skill-category glass-panel-alt">
+                    <h3>Infraestructura & Integraciones</h3>
+                    <ul class="skill-list">
+                        <li><strong>DevOps/Infra:</strong> Docker, Render, Cloudflare, Linux</li>
+                        <li><strong>Orquestación:</strong> n8n</li>
+                        <li><strong>APIs:</strong> WhatsApp Cloud, Gemini, SAP Business One</li>
+                        <li><strong>Herramientas Doc:</strong> Gotenberg (Generación PDF)</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 3: Frontend & IA -->
+                <div id="detalles-frontend" class="skill-category glass-panel-alt">
+                    <h3>Frontend, Herramientas & IA</h3>
+                    <ul class="skill-list">
+                        <li><strong>IA:</strong> Prompt Engineering, Integración LLMs</li>
+                        <li><strong>Entornos:</strong> VS Code, Git, GitHub, DBeaver</li>
+                        <li><strong>Frontend:</strong> HTML5 Semántico, CSS3 Moderno</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<!-- SCRIPT DE INTERACTIVIDAD PARA LA GRÁFICA DEL HERO -->
+    <script>
+        // Esperamos a que todo el HTML esté cargado antes de ejecutar la lógica
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Capturamos los elementos del DOM (Document Object Model)
+            const chart = document.querySelector('.composition-chart');
+            const itemTech = document.getElementById('legend-tech');
+            const itemLog = document.getElementById('legend-log');
+            const itemArt = document.getElementById('legend-art');
+
+            // 2. Función genérica para resetear la gráfica a su estado original
+            const resetChart = () => {
+                chart.className = 'composition-chart'; 
+            };
+
+            // 3. Escuchadores de eventos (Event Listeners) para Ingeniería
+            itemTech.addEventListener('mouseenter', () => {
+                chart.classList.add('focus-tech'); 
+            });
+            itemTech.addEventListener('mouseleave', resetChart);
+
+            // 4. Escuchadores de eventos para Logística
+            itemLog.addEventListener('mouseenter', () => {
+                chart.classList.add('focus-log');
+            });
+            itemLog.addEventListener('mouseleave', resetChart);
+
+            // 5. Escuchadores de eventos para Síntesis Visual
+            itemArt.addEventListener('mouseenter', () => {
+                chart.classList.add('focus-art');
+            });
+            itemArt.addEventListener('mouseleave', resetChart);
+            
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>
