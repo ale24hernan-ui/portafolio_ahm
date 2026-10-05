@@ -69,11 +69,26 @@ body {
 
 /* SECCIÓN HERO (GRID TÉCNICO DARK MODE) */
 .hero-section {
-    height: 100vh;
+    /* 1. CAMBIO CLAVE: Agregamos padding superior */
+    /* Empujamos el contenido hacia abajo para que no quede oculto bajo el header. 
+       Ajusta este valor (ej. 80px, 100px) según la altura real de tu barra de navegación. */
+    padding-top: 100px; 
+    
+    /* 2. CAMBIO CLAVE: Cambiamos 'height' por 'min-height' */
+    /* Antes decía 'height: 100vh;'. Al agregar padding superior, forzar exactamente 
+       100vh (el 100% de la altura de la pantalla) puede causar que el contenido 
+       se desborde hacia abajo. 'min-height' asegura que ocupe AL MENOS toda 
+       la pantalla, pero que pueda crecer si el contenido (como en móviles) lo requiere. */
+    min-height: 100vh;
+    
+    /* El resto se mantiene igual */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 5%;
+    padding-bottom: 5%; /* Añadimos un poco de margen abajo por equilibrio */
+    padding-left: 5%;
+    padding-right: 5%;
+    
     background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
                       linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
