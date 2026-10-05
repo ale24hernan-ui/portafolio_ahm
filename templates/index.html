@@ -76,6 +76,14 @@
 
             <!-- COLUMNA DERECHA: PRESENTACIÓN PRINCIPAL -->
             <div class="hero-content">
+                <!-- ¿Por qué?: Mantenemos la estructura de tu botón ancla <a> original sin alterar sus clases de diseño. -->
+<!-- ¿Para qué?: Para que visualmente se vea exactamente igual, pero ahora tenga un puente directo con JavaScript. -->
+<a href="https://wa.me/5219987671050?text=Hola%20Alejandro,%20he%20visto%20tu%20portafolio%20técnico%20y%20me%20gustaría%20contactarte." 
+   id="btn-whatsapp" 
+   class="btn btn-secondary" 
+   target="_blank">
+   Contactar
+</a>
                 <!-- La etiqueta span inyecta el acento vibrante en tu nombre -->
                 <h1>Hola, soy <span>Alejandro Monroy</span></h1>
                 <h2>Data Scientist & Backend Integration Specialist</h2>
@@ -251,6 +259,122 @@
             itemArt.addEventListener('mouseleave', resetChart);
             
         });
+        // ¿Por qué?: Capturamos el nodo del DOM mediante el ID recién creado.
+// ¿Para qué?: Es el punto de control primario donde engancharemos nuestro detector de interacciones.
+const btnContacto = document.getElementById('btn-whatsapp');
+
+// ¿Por qué?: Estructuramos un Array de strings constantes.
+// ¿Para qué?: Almacenar la biblioteca de frases de recompensa y tenerlas listas para su inyección aleatoria.
+const elogios = ["¡Buena elección!", "¡Good job!", "¡Excelente!"];
+
+// ¿Por qué?: Desplegamos el método addEventListener evaluando el evento 'click'.
+// ¿Para qué?: Le ordenamos al sistema que escuche atentamente al botón; inyectamos el objeto 'e' (evento) para capturar coordenadas.
+btnContacto.addEventListener('click', function(e) {
+
+    // ==========================================
+    // FASE 1: ORQUESTACIÓN ACÚSTICA
+    // ==========================================
+    // ¿Por qué?: Invocamos la clase constructora nativa Audio() de HTML5.
+    // ¿Para qué?: Instanciar el recurso acústico en memoria RAM antes de reproducirlo.
+    const audioExito = new Audio('static/audio/chispa-suave.mp3'); // Ajusta la ruta a tu servidor
+    
+    // ¿Por qué?: Asignamos estrictamente 0.2 a la propiedad volume.
+    // ¿Para qué?: Garantizar tu regla inquebrantable de empatía sonora, topando el impacto acústico al 20%.
+    audioExito.volume = 0.2;
+    
+    // ¿Por qué?: Ejecutamos el método play().
+    // ¿Para qué?: Lanzar la onda sonora de forma instantánea al registrarse el clic.
+    audioExito.play();
+
+    // ==========================================
+    // FASE 2: CONSTRUCCIÓN DEL ELOGIO TEXTUAL
+    // ==========================================
+    // ¿Por qué?: Utilizamos createElement() para formular un nodo span.
+    // ¿Para qué?: Generar el contenedor virtual que albergará la frase seleccionada.
+    const texto = document.createElement('span');
+    
+    // ¿Por qué?: Vinculamos la clase 'texto-elegante'.
+    // ¿Para qué?: Para que el DOM le aplique de inmediato todas las propiedades visuales y el CSS Keyframe.
+    texto.className = 'texto-elegante';
+    
+    // ¿Por qué?: Mezclamos Math.random() con Math.floor().
+    // ¿Para qué?: Extraer un índice matemático entero aleatorio y seleccionar una frase distinta en cada ocasión.
+    texto.innerText = elogios[Math.floor(Math.random() * elogios.length)];
+    
+    // ¿Por qué?: Concatenamos las coordenadas dinámicas (e.pageX y e.pageY) de la flecha con 'px'.
+    // ¿Para qué?: Para posicionar milimétricamente el inicio de la animación en el punto exacto de la pantalla.
+    texto.style.left = e.pageX + 'px';
+    texto.style.top = e.pageY + 'px';
+    
+    // ¿Por qué?: Invocamos appendChild() en document.body.
+    // ¿Para qué?: Trasladar nuestro span desde la memoria RAM hacia la interfaz visual activa.
+    document.body.appendChild(texto);
+
+    // ==========================================
+    // FASE 3: DESPLIEGUE DEL FUEGO ARTIFICIAL CONTENIDO
+    // ==========================================
+    // ¿Por qué?: Declaramos un bucle for tradicional de 5 ciclos.
+    // ¿Para qué?: Engendrar exactamente 5 partículas de luz individuales por cada clic ejecutado.
+    for (let i = 0; i < 5; i++) {
+        // ¿Por qué?: Creamos un div genérico.
+        // ¿Para qué?: Servirá como el cuerpo físico de cada micro-chispa.
+        const chispa = document.createElement('div');
+        
+        // ¿Por qué?: Asignamos la clase de CSS correspondiente.
+        // ¿Para qué?: Aplicar el diámetro de 4px, el color dorado y su formato circular.
+        chispa.className = 'micro-chispa';
+        
+        // ¿Por qué?: Atribuimos las coordenadas 'e.pageX' y 'e.pageY'.
+        // ¿Para qué?: Las 5 chispas nacen desde un único punto de origen comprimido (el cursor).
+        chispa.style.left = e.pageX + 'px';
+        chispa.style.top = e.pageY + 'px';
+        
+        // ¿Por qué?: Inyectamos el div en la raíz body del DOM.
+        // ¿Para qué?: Renderizar la partícula para que el motor de animaciones pueda moverla.
+        document.body.appendChild(chispa);
+
+        // ¿Por qué?: Multiplicamos random por PI y por 2.
+        // ¿Para qué?: Calcular un ángulo radial absolutamente aleatorio (dentro de 360 grados).
+        const angulo = Math.random() * Math.PI * 2;
+        
+        // ¿Por qué?: Acotamos random a un factor multiplicador de 35.
+        // ¿Para qué?: Establecer el límite físico estricto de desplazamiento (aprox. 1 centímetro en pantalla).
+        const distancia = Math.random() * 35; 
+        
+        // ¿Por qué?: Aplicamos trigonometría vectorial (Coseno para X, Seno para Y).
+        // ¿Para qué?: Traducir el ángulo y la distancia en coordenadas planas bidimensionales hacia donde volará la chispa.
+        const destinoX = Math.cos(angulo) * distancia;
+        const destinoY = Math.sin(angulo) * distancia;
+
+        // ¿Por qué?: Implementamos el método nativo .animate() de la Web Animations API.
+        // ¿Para qué?: Ejecutar la traslación calculada optimizando los recursos del hardware y evitando bloquear el hilo principal.
+        chispa.animate([
+            { transform: `translate(0px, 0px) scale(1)`, opacity: 1 },
+            { transform: `translate(${destinoX}px, ${destinoY}px) scale(0)`, opacity: 0 }
+        ], {
+            // ¿Por qué?: Sumamos un valor base (600) más un margen aleatorio (300).
+            // ¿Para qué?: Hacer que cada partícula viva un tiempo milimétricamente diferente (orgánico, no robótico).
+            duration: 600 + Math.random() * 300, 
+            // ¿Por qué?: Integramos una curva bezier calculada (0.25, 1, 0.5, 1).
+            // ¿Para qué?: Provocar que la chispa estalle rápido al principio pero desacelere exquisitamente al desvanecerse.
+            easing: 'cubic-bezier(0.25, 1, 0.5, 1)', 
+            // ¿Por qué?: Especificamos 'forwards' en la propiedad fill.
+            // ¿Para qué?: Congelar el frame de la animación en su posición final para evitar "parpadeos".
+            fill: 'forwards'
+        });
+
+        // ==========================================
+        // FASE 4: HIGIENE DE MEMORIA (GARBAGE COLLECTION)
+        // ==========================================
+        // ¿Por qué?: Activamos un temporizador setTimeout de 1000ms.
+        // ¿Para qué?: Destruir y remover del HTML los div de las chispas una vez apagadas, garantizando rendimiento B2B extremo.
+        setTimeout(() => chispa.remove(), 1000);
+    }
+
+    // ¿Por qué?: Activamos un temporizador final de 1200ms.
+    // ¿Para qué?: Eliminar el span del elogio exactamente cuando termina de ejecutarse su animación en el CSS, optimizando la memoria RAM.
+    setTimeout(() => texto.remove(), 1200);
+});
         <!-- SECCIÓN: PIE DE PÁGINA (CONTACTO) -->
     
     </script>

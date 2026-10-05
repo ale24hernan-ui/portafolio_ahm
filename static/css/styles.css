@@ -921,3 +921,37 @@ html {
         font-size: clamp(1rem, 5vw, 1.3rem);
     }
 }
+/* =========================================
+   MICRO-INTERACCIÓN PREMIUM: ELOGIO Y CHISPAS
+   ========================================= */
+
+.texto-elegante {
+    position: absolute; /* ¿Por qué?: Saca al elemento del flujo normal de la página. ¿Para qué?: Para permitirnos colocarlo dinámicamente con coordenadas exactas sobre el puntero. */
+    color: rgba(40, 167, 69, 0.8); /* ¿Por qué?: Formato RGBA con canal alfa. ¿Para qué?: Para inyectar un color verde esmeralda (psicología de éxito) con 80% de opacidad para que no abrume. */
+    font-size: 0.9rem; /* ¿Por qué?: Medida relativa a la raíz. ¿Para qué?: Mantener un tamaño pequeño, sutil y proporcionado que comunique elegancia. */
+    font-weight: 600; /* ¿Por qué?: Peso semi-bold. ¿Para qué?: Para garantizar una lectura rápida y nítida a pesar de su transparencia. */
+    pointer-events: none; /* ¿Por qué?: Propiedad de interacción nativa en "none". ¿Para qué?: Para que el texto flotante sea como un "fantasma" que no bloquee otros clics en la interfaz. */
+    transform: translate(-50%, -100%); /* ¿Por qué?: Translación en ejes X e Y. ¿Para qué?: Para centrar el texto matemáticamente justo en la punta de la flecha del ratón. */
+    animation: flotar-suave 1.2s ease-out forwards; /* ¿Por qué?: Llama a los keyframes. ¿Para qué?: Configura 1.2 segundos de duración, frenado suave al final, y asegura que retenga su estado final. */
+    z-index: 9999; /* ¿Por qué?: Un índice Z elevadísimo. ¿Para qué?: Para asegurar que el texto flote por encima de componentes como tu header fijo. */
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.1); /* ¿Por qué?: Sombra en eje Y. ¿Para qué?: Para separar las letras del fondo por si caen sobre tonos similares, asegurando alto contraste. */
+}
+
+.micro-chispa {
+    position: absolute; /* ¿Por qué?: Independencia del flujo HTML. ¿Para qué?: Poder dibujarlas libremente en el lugar del clic. */
+    width: 4px; /* ¿Por qué?: 4 píxeles exactos. ¿Para qué?: Asegurar un diámetro milimétrico para el efecto contenido y premium. */
+    height: 4px; /* ¿Por qué?: 4 píxeles de alto. ¿Para qué?: Mantener simetría 1:1 para construir una circunferencia perfecta. */
+    background-color: #ffd700; /* ¿Por qué?: Hexadecimal dorado sólido. ¿Para qué?: Emular la chispa ígnea que destaque en tu entorno Dark Mode. */
+    border-radius: 50%; /* ¿Por qué?: Radio al máximo. ¿Para qué?: Transforma el contenedor cuadrado en un círculo visualmente suave. */
+    pointer-events: none; /* ¿Por qué?: Invisibilidad ante el clic. ¿Para qué?: El usuario no debe poder hacer clic accidentalmente en una chispa. */
+    z-index: 9998; /* ¿Por qué?: Índice justo inferior al texto. ¿Para qué?: El elogio es la prioridad semántica, las chispas son el marco escénico. */
+}
+
+@keyframes flotar-suave {
+    /* ¿Por qué?: Fotograma 0%. ¿Para qué?: Estado inicial completamente transparente, ligeramente encogido y cerca del cursor. */
+    0% { opacity: 0; transform: translate(-50%, -10px) scale(0.8); }
+    /* ¿Por qué?: Fotograma 20%. ¿Para qué?: Pasa a opacidad total, estalla a escala real y sube ligeramente creando el efecto "Pop". */
+    20% { opacity: 1; transform: translate(-50%, -25px) scale(1); }
+    /* ¿Por qué?: Fotograma 100%. ¿Para qué?: Asciende a su límite máximo de 1cm (-35px), se disipa (opacity 0) y se contrae. */
+    100% { opacity: 0; transform: translate(-50%, -35px) scale(0.9); }
+}
