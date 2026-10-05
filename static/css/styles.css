@@ -845,4 +845,64 @@ html {
     .skill-category {
         padding: 1.5rem; /* Reducimos el relleno interno (padding) para que el texto aproveche mejor el ancho */
     }
+    /* =========================================
+       HERO EN DISPOSITIVOS MÓVILES
+       ========================================= */
+
+    /* 1. Ajuste del panel principal de cristal */
+    .hero-glass {
+        /* Pasamos de Flex row (horizontal) a Flex column (vertical) */
+        flex-direction: column; 
+        
+        /* Reducimos el padding interno y el gap (espacio) general para aprovechar la pantalla */
+        padding: 2.5rem 1.5rem; 
+        gap: 2rem; 
+        
+        /* Centramos todo el contenido del panel (gráfica y textos) */
+        text-align: center;
+    }
+
+    /* 2. Ajuste del contenedor izquierdo (la gráfica de perfil) */
+    .hero-metrics {
+        /* Eliminamos la línea divisoria vertical que estaba a la derecha */
+        border-right: none; 
+        
+        /* Eliminamos el espacio extra a la derecha que dejaba la línea */
+        padding-right: 0; 
+        
+        /* Aseguramos que ocupe todo el ancho disponible para centrarse correctamente */
+        width: 100%; 
+        
+        /* Centramos la gráfica y la leyenda dentro de este contenedor */
+        align-items: center; 
+    }
+
+    /* 3. Ajuste de la leyenda (los colores y porcentajes) */
+    .composition-legend {
+        /* Centramos el texto de los ítems de la leyenda para que no queden cargados a la izquierda */
+        align-items: center; 
+    }
+
+    /* 4. Ajuste del texto de presentación */
+    .hero-content {
+        /* Aseguramos que los textos (h1, h2, p) hereden el text-align: center del padre (.hero-glass) */
+        text-align: center; 
+    }
+
+    /* 5. Ajuste de los botones de llamada a la acción (CTA) */
+    .hero-content .cta-container {
+        /* Cambiamos la alineación de flex-start (izquierda) a center para centrar los botones */
+        justify-content: center; 
+    }
+
+    /* 6. Ajuste de fuentes para pantallas pequeñas */
+    .glass-panel h1 {
+        /* Reducimos ligeramente el tamaño del H1 mediante clamp, priorizando valores más pequeños */
+        font-size: clamp(2rem, 8vw, 3rem); 
+    }
+
+    .glass-panel h2 {
+         /* Reducimos ligeramente el H2 */
+        font-size: clamp(1rem, 5vw, 1.3rem);
+    }
 }
