@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- 1. INYECTA ESTA LÍNEA DENTRO DE TU <head> (justo debajo de tu etiqueta <title>) -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alejandro Monroy | Data Scientist & Backend Specialist</title>
@@ -11,7 +13,7 @@
     <!-- Barra de Navegación -->
     <header class="main-header">
         <nav class="navbar">
-            <div class="logo">AM.</div>
+            <div class="logo">AHM</div>
             <ul class="nav-links">
                 <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#habilidades">Habilidades</a></li>
@@ -146,40 +148,36 @@
         <div class="section-container">
             <h2 class="section-title">Stack Tecnológico & Capacidades</h2>
             
-            <!-- PARTE SUPERIOR: GRÁFICAS CIRCULARES (ATRACTORES VISUALES) -->
-            <div class="circular-charts-grid">
-                
-                <!-- Círculo 1: Backend & DBs -->
-                <a href="#detalles-backend" class="chart-anchor">
-                    <div class="circular-chart" style="--progreso: 90%;">
-                        <div class="inner-circle">
-                            <span class="chart-percentage">90%</span>
-                            <span class="chart-label">Backend & DBs</span>
-                        </div>
-                    </div>
-                </a>
+            <!-- 2. BUSCA Y REEMPLAZA EL CONTENEDOR "circular-charts-grid" POR ESTE NUEVO BLOQUE -->
+<div class="skills-icons-grid">
+    
+    <!-- Ícono 1: Backend & DBs -->
+    <a href="#detalles-backend" class="chart-anchor">
+        <div class="icon-card">
+            <!-- Usamos un ícono de base de datos/servidor -->
+            <i class="ph ph-database"></i>
+            <span class="chart-label">Backend & DBs</span>
+        </div>
+    </a>
 
-                <!-- Círculo 2: Infraestructura & APIs -->
-                <a href="#detalles-infra" class="chart-anchor">
-                    <div class="circular-chart" style="--progreso: 85%;">
-                        <div class="inner-circle">
-                            <span class="chart-percentage">85%</span>
-                            <span class="chart-label">Infraestructura</span>
-                        </div>
-                    </div>
-                </a>
+    <!-- Ícono 2: Infraestructura -->
+    <a href="#detalles-infra" class="chart-anchor">
+        <div class="icon-card">
+            <!-- Usamos un ícono de red/nodos -->
+            <i class="ph ph-graph"></i>
+            <span class="chart-label">Infraestructura</span>
+        </div>
+    </a>
 
-                <!-- Círculo 3: Frontend & IA -->
-                <a href="#detalles-frontend" class="chart-anchor">
-                    <div class="circular-chart" style="--progreso: 80%;">
-                        <div class="inner-circle">
-                            <span class="chart-percentage">80%</span>
-                            <span class="chart-label">Frontend & IA</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
+    <!-- Ícono 3: Frontend & IA -->
+    <a href="#detalles-frontend" class="chart-anchor">
+        <div class="icon-card">
+            <!-- Usamos un ícono de chip de inteligencia artificial -->
+            <i class="ph ph-cpu"></i>
+            <span class="chart-label">Frontend & IA</span>
+        </div>
+    </a>
+</div>
             <!-- PARTE INFERIOR: TARJETAS DESCRIPTIVAS DETALLADAS -->
             <div class="detailed-cards-grid">
                 
@@ -253,7 +251,39 @@
             itemArt.addEventListener('mouseleave', resetChart);
             
         });
+        <!-- SECCIÓN: PIE DE PÁGINA (CONTACTO) -->
+    
     </script>
+    <footer id="contacto" class="main-footer">
+        <div class="footer-container">
+            
+            <!-- Bloque 1: Marca Personal -->
+            <div class="footer-brand">
+                <h3>Alejandro Monroy</h3>
+                <p>Data Scientist & Backend Integration Specialist</p>
+            </div>
+            
+            <!-- Bloque 2: Contacto Directo -->
+            <div class="footer-links">
+                <h4>Contacto</h4>
+                <a href="mailto:ale24hernan@gmail.com" target="_blank">ale24hernan@gmail.com</a>
+                <a href="https://wa.me/5219987671050" target="_blank">+52 998 767 1050</a>
+            </div>
+            
+            <!-- Bloque 3: Redes y Repositorios -->
+            <div class="footer-social">
+                <h4>Redes Profesionales</h4>
+                <a href="https://github.com/ale24hernan-ui/" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/alejandro-hernandez-monroy-395ba640a/" target="_blank">LinkedIn</a>
+            </div>
+            
+        </div>
+        
+        <!-- Bloque 4: Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alejandro Hernandez Monroy. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
 </body>

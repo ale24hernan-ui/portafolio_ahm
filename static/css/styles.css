@@ -402,64 +402,94 @@ html {
 }
 
 /* =========================================
-   GRÁFICAS CIRCULARES (PARTE SUPERIOR)
+   ICONOGRAFÍA VECTORIAL (HABILIDADES)
    ========================================= */
-.circular-charts-grid {
+
+/* Contenedor principal: Usamos Grid para distribuir las 3 tarjetas de íconos */
+.skills-icons-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Crea columnas flexibles que miden mínimo 150px. Si la pantalla se achica, se apilan. */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem; 
-    justify-items: center; 
+    justify-items: center; /* Centra las tarjetas en su espacio disponible */
 }
 
+/* Enlace que envuelve la tarjeta. Le quitamos el subrayado por defecto. */
 .chart-anchor {
     text-decoration: none;
+    /* Preparamos una transición fluida para el salto vertical al hacer hover */
     transition: transform 0.3s ease;
 }
 
+/* Efecto de levitación cuando el usuario pasa el ratón sobre el enlace */
 .chart-anchor:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px); /* Sube la tarjeta 8 píxeles */
 }
 
-.circular-chart {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    /* TRUCO TÉCNICO: Gradiente cónico para simular la gráfica de progreso */
-    background: conic-gradient(var(--accent-yellow) var(--progreso), rgba(255, 255, 255, 0.05) 0deg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 20px var(--glass-shadow);
-}
-
-.inner-circle {
-    width: 140px; 
+/* El fondo cristalino que contiene al ícono */
+.icon-card {
+    width: 140px;
     height: 140px;
-    border-radius: 50%;
-    background-color: var(--bg-dark); 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.5); 
+    border-radius: 50%; /* Hace que la tarjeta sea un círculo perfecto */
+    background: var(--bg-panel); /* Usa tu fondo oscuro transparente */
+    backdrop-filter: blur(12px); /* Aplica el efecto de cristal esmerilado */
+    -webkit-backdrop-filter: blur(12px); /* Soporte para navegadores Safari */
+    border: 1px solid var(--glass-border); /* Borde sutil transparente */
+    display: flex; /* Permite alinear el ícono y el texto internamente */
+    flex-direction: column; /* Apila el ícono arriba y el texto abajo */
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    box-shadow: 0 10px 20px var(--glass-shadow); /* Sombra base para dar profundidad */
+    /* Transición para que el brillo interno y el borde cambien suavemente */
+    transition: all 0.3s ease;
 }
 
-.chart-percentage {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--text-light);
-    line-height: 1;
+/* Estilo del ícono en sí (la etiqueta <i> de Phosphor Icons) */
+.icon-card i {
+    font-size: 3.5rem; 
+    /* CAMBIO CLAVE: Asignamos tu variable amarilla como color principal */
+    color: var(--accent-yellow); 
+    /* OPCIONAL: Un sutil brillo permanente para dar aspecto de 'encendido' */
+    text-shadow: 0 0 10px rgba(255, 195, 0, 0.3); 
+    margin-bottom: 0.5rem; 
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.chart-label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+/* LA MAGIA DEL HOVER (INTERACTIVIDAD MEJORADA) */
+/* Al pasar el ratón, aumentamos la intensidad del brillo y hacemos que 'salte' levemente */
+.chart-anchor:hover .icon-card i {
+    color: #FFD54F; /* Un amarillo ligeramente más claro/brillante para el hover */
+    text-shadow: 0 0 20px rgba(255, 195, 0, 0.8); /* Brillo más intenso */
+    transform: scale(1.1); /* Efecto de latido: crece un 10% */
+}
+
+/* Estilo del texto debajo del ícono */
+.icon-card .chart-label {
+    font-size: 0.85rem; /* Texto pequeño y elegante */
+    color: var(--text-muted); /* Gris apagado para no competir con el ícono */
     text-align: center;
-    margin-top: 0.5rem;
-    font-weight: 600;
+    font-weight: 600; /* Grosor semibold para buena lectura */
+    transition: color 0.3s ease;
 }
 
+/* LA MAGIA DEL HOVER (INTERACTIVIDAD) */
+/* Cuando pasamos el ratón por la tarjeta, el borde brilla de amarillo */
+.chart-anchor:hover .icon-card {
+    border-color: rgba(255, 195, 0, 0.5); /* Borde amarillo semitransparente */
+    box-shadow: 0 10px 25px rgba(255, 195, 0, 0.15); /* Resplandor amarillo alrededor */
+}
+
+/* Cuando pasamos el ratón, el ícono se vuelve amarillo y genera un efecto de luz neón */
+.chart-anchor:hover .icon-card i {
+    color: var(--accent-yellow); /* Cambia al amarillo de tu paleta */
+    text-shadow: 0 0 15px rgba(255, 195, 0, 0.6); /* Brillo difuminado simulando luz */
+}
+
+/* Cuando pasamos el ratón, el texto gris apagado se ilumina a blanco */
+.chart-anchor:hover .icon-card .chart-label {
+    color: var(--text-light);
+}
 /* =========================================
    TARJETAS DESCRIPTIVAS (PARTE INFERIOR)
    ========================================= */
@@ -696,4 +726,123 @@ html {
         #8282FF 80% 100%
     );
     transform: scale(1.02);
+}
+/* =========================================
+   PIE DE PÁGINA (FOOTER / CONTACTO)
+   ========================================= */
+
+/* Contenedor maestro del footer */
+.main-footer {
+    background-color: #050d1a; 
+    padding: 5rem 5% 2rem; 
+    border-top: 1px solid var(--glass-border); 
+}
+
+/* Cuadrícula interna del footer */
+.footer-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    flex-wrap: wrap; 
+    gap: 3rem; 
+    max-width: 1200px; 
+    margin: 0 auto 4rem auto; 
+}
+
+/* Estilos de la Marca Personal */
+.footer-brand h3 {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 300px; 
+}
+
+/* Títulos de las columnas de enlaces */
+.footer-links h4, .footer-social h4 {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Contenedores de enlaces en columna */
+.footer-links, .footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Estilos de los enlaces de contacto y redes */
+.footer-links a, .footer-social a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease; 
+    font-weight: 500;
+}
+
+/* Interactividad Hover de los enlaces */
+.footer-links a:hover, .footer-social a:hover {
+    color: var(--accent-yellow);
+    transform: translateX(5px); 
+}
+
+/* Línea final de Copyright */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+/* =========================================
+   DISEÑO RESPONSIVO (MÓVILES Y TABLETS)
+   ========================================= */
+
+/* Esta regla se activará ÚNICAMENTE cuando la pantalla mida 768px o menos de ancho (típico de tablets verticales y móviles) */
+@media (max-width: 768px) {
+    
+    /* 1. Ajustes Generales de la Sección */
+    .skills-section {
+        padding: 4rem 3%; /* Reducimos el padding superior/inferior y el margen lateral (de 5% a 3%) para ganar espacio */
+    }
+
+    /* 2. Ajuste de los Títulos */
+    .section-title {
+        font-size: 2rem; /* Achicamos ligeramente el título principal para que no ocupe 3 líneas */
+        margin-bottom: 2rem;
+    }
+
+    /* 3. Reorganización de la Cuadrícula de Íconos Superiores */
+    .skills-icons-grid {
+        /* En móviles, forzamos 1 sola columna. Las tarjetas se apilarán una debajo de la otra. */
+        grid-template-columns: 1fr; 
+        gap: 1.5rem; /* Reducimos la separación entre ellas */
+        margin-bottom: 3rem;
+    }
+
+    /* 4. Ajuste de las Tarjetas de Íconos (Los Círculos) */
+    .icon-card {
+        width: 120px; /* Reducimos el diámetro de 140px a 120px */
+        height: 120px;
+    }
+
+    .icon-card i {
+        font-size: 2.8rem; /* El ícono interior también debe reducirse proporcionalmente */
+    }
+
+    /* 5. Reorganización de la Cuadrícula de Textos Inferiores */
+    .detailed-cards-grid {
+        /* Al igual que los íconos, forzamos 1 sola columna para las tarjetas descriptivas */
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* 6. Ajuste interno de las tarjetas descriptivas */
+    .skill-category {
+        padding: 1.5rem; /* Reducimos el relleno interno (padding) para que el texto aproveche mejor el ancho */
+    }
 }
