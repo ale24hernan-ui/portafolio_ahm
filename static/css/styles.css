@@ -1098,7 +1098,33 @@ html {
     background-color: var(--accent-yellow);
     transition-duration: .3s;
 }
+/* =========================================
+   COLORES DE MARCA PARA LAS REDES RESTANTES
+   ========================================= */
 
+/* Red 3: Instagram */
+.containerInstagram:hover {
+    /* ¿Por qué?: Usamos el código hexadecimal #d62976 de tu código original. */
+    /* ¿Para qué?: Para igualar el tono magenta vibrante icónico de Instagram, generando reconocimiento visual instantáneo. */
+    background-color: #d62976;
+    transition-duration: .3s;
+}
+
+/* Red 4: Facebook */
+.containerFacebook:hover {
+    /* ¿Por qué?: Usamos el color hexadecimal #1877F2. */
+    /* ¿Para qué?: Es el "Azul Facebook" oficial. Le comunicamos al usuario, de manera no verbal, hacia qué ecosistema se dirige. */
+    background-color: #1877F2;
+    transition-duration: .3s;
+}
+
+/* Red 5: WhatsApp */
+.containerWhatsapp:hover {
+    /* ¿Por qué?: Asignamos el valor #128C7E, directamente extraído de tu investigación. */
+    /* ¿Para qué?: Para mantener la consistencia con el verde corporativo de WhatsApp Business Cloud, alineándose con tu expertise en la API. */
+    background-color: #128C7E;
+    transition-duration: .3s;
+}
 .socialContainer:active {
     /* ¿Por qué?: Transformación de escala al 90% (0.9). */
     /* ¿Para qué?: Dar retroalimentación física al usuario cuando hace "clic" (el botón se hunde). */
