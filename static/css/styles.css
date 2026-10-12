@@ -1041,3 +1041,98 @@ html {
     font-size: 0.95rem;
     color: var(--text-muted);
 }
+/* =========================================
+   ANIMACIONES DE REDES SOCIALES (FOOTER)
+   ========================================= */
+
+.card {
+    /* ¿Por qué?: Asignamos width y height a 'fit-content'. */
+    /* ¿Para qué?: Para que el contenedor mida exactamente lo que ocupan los botones, ni un píxel más. */
+    width: fit-content;
+    height: fit-content;
+    /* ¿Por qué?: Eliminamos el fondo rgb(238,238,238) original y lo hacemos transparente. */
+    /* ¿Para qué?: Para que no choque con tu diseño Dark Mode y se funda con tu pie de página. */
+    background-color: transparent; 
+    /* ¿Por qué?: Flexbox con centrado. */
+    /* ¿Para qué?: Alinear los botones sociales en una fila perfecta. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* ¿Por qué?: Gap de 20px. */
+    /* ¿Para qué?: Mantener una distancia respirable y elegante entre cada botón. */
+    gap: 20px;
+}
+
+.socialContainer {
+    /* ¿Por qué?: Dimensiones cuadradas fijas (52x52). */
+    /* ¿Para qué?: Garantizar que todos los botones tengan la misma masa visual. */
+    width: 52px;
+    height: 52px;
+    /* ¿Por qué?: Fondo oscuro casi negro (rgb 44,44,44) y bordes redondeados al 50%. */
+    /* ¿Para qué?: Crear el círculo base que contrasta sutilmente con tu footer. */
+    background-color: rgba(255, 255, 255, 0.05); 
+    border-radius: 50%;
+    /* ¿Por qué?: Display flex con overflow hidden. */
+    /* ¿Para qué?: Centrar el ícono interno y asegurar que si la animación se sale del borde, se recorte limpiamente. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* ¿Por qué?: Transición global de 0.3 segundos. */
+    /* ¿Para qué?: Que cualquier cambio (como el color de fondo) ocurra suavemente y no de golpe. */
+    transition-duration: .3s;
+}
+
+/* Red 1: LinkedIn */
+.containerLinkedin:hover {
+    /* ¿Por qué?: Color hexadecimal específico #0072b1. */
+    /* ¿Para qué?: Respetar el color corporativo oficial de la marca LinkedIn al hacer hover. */
+    background-color: #0072b1;
+    transition-duration: .3s;
+}
+
+/* Red 2: GitHub */
+.containerGithub:hover {
+    /* ¿Por qué?: Color negro puro con brillo #171515 o amarillo de tu paleta. Usaremos tu amarillo de acento para uniformidad. */
+    /* ¿Para qué?: Mantener la congruencia con tu identidad de marca personal. */
+    background-color: var(--accent-yellow);
+    transition-duration: .3s;
+}
+
+.socialContainer:active {
+    /* ¿Por qué?: Transformación de escala al 90% (0.9). */
+    /* ¿Para qué?: Dar retroalimentación física al usuario cuando hace "clic" (el botón se hunde). */
+    transform: scale(0.9);
+    transition-duration: .3s;
+}
+
+.socialSvg {
+    /* ¿Por qué?: Ancho fijo de 24px (ligeramente más grande que los 17px originales). */
+    /* ¿Para qué?: Mejorar la visibilidad de los íconos dentro de tu diseño. */
+    width: 24px;
+}
+
+.socialSvg path {
+    /* ¿Por qué?: Relleno blanco (o tu color de texto). */
+    /* ¿Para qué?: Que los íconos destaquen sobre el fondo oscuro. */
+    fill: var(--text-light);
+}
+
+/* ¿Por qué?: Al hacer hover en el contenedor, modificamos el SVG interno. */
+/* ¿Para qué?: Disparar la animación de entrada ('slide-in-top') del ícono. */
+.socialContainer:hover .socialSvg {
+    animation: slide-in-top 0.3s both;
+}
+
+/* ¿Por qué?: Keyframes personalizados (animación cuadro a cuadro). */
+/* ¿Para qué?: Definir el viaje del ícono: inicia 50px arriba e invisible (0%), y termina en su lugar original siendo 100% visible. */
+@keyframes slide-in-top {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
