@@ -955,3 +955,89 @@ html {
     /* ¿Por qué?: Fotograma 100%. ¿Para qué?: Asciende a su límite máximo de 1cm (-35px), se disipa (opacity 0) y se contrae. */
     100% { opacity: 0; transform: translate(-50%, -35px) scale(0.9); }
 }
+/* =========================================
+   NUEVO COMPONENTE: FLIP CARDS DE HABILIDADES
+   ========================================= */
+
+/* ¿Por qué?: Contenedor Grid responsivo.
+   ¿Para qué?: Para agrupar las tarjetas y asegurar que se apilen ordenadamente en móviles y se expandan en PC. */
+.flip-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* ¿Por qué?: Clase base de la tarjeta con 'perspective: 1000px'.
+   ¿Para qué?: El motor CSS necesita una perspectiva 3D para calcular cómo se deforma la tarjeta al girar. Sin esto, el giro se ve plano (2D). */
+.flip-card {
+    background-color: transparent;
+    height: 254px;
+    perspective: 1000px;
+    font-family: inherit; /* Hereda tu tipografía elegante */
+}
+
+/* ¿Por qué?: Estructura interna de la tarjeta.
+   ¿Para qué?: Actúa como el "eje" de rotación. Mantiene unidas la cara frontal y la trasera. */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* Curva de animación más elegante y profesional */
+    transform-style: preserve-3d; /* Permite que los elementos hijos existan en un espacio 3D */
+}
+
+/* ¿Por qué?: Pseudo-clase :hover aplicada al contenedor principal.
+   ¿Para qué?: Dispara la rotación de 180 grados en el eje Y (horizontal) cuando el ratón pasa por encima. */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* ¿Por qué?: Reglas compartidas para ambas caras.
+   ¿Para qué?: 'backface-visibility: hidden' es crucial; hace invisible la parte de atrás de un elemento HTML cuando está de espaldas a la cámara. */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--glass-border);
+}
+
+/* ¿Por qué?: Cara frontal (Estilo Dark Glassmorphism).
+   ¿Para qué?: Mostrar el estado inicial. Usa el fondo semi-transparente de tus otras tarjetas. */
+.flip-card-front {
+    background: var(--bg-panel);
+    color: var(--text-light);
+    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+}
+
+/* ¿Por qué?: Cara trasera (Estilo Resaltado).
+   ¿Para qué?: Muestra la información oculta. Empieza rotada 180 grados para que al girar el contenedor padre, esta cara quede de frente. */
+.flip-card-back {
+    background: linear-gradient(135deg, rgba(255, 195, 0, 0.1) 0%, rgba(255, 195, 0, 0.02) 100%);
+    background-color: var(--bg-dark);
+    border: 1px solid var(--accent-yellow);
+    color: var(--text-light);
+    transform: rotateY(180deg);
+    box-shadow: 0 0 20px rgba(255, 195, 0, 0.15); /* Resplandor sutil */
+}
+
+.flip-card .title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-yellow); /* Destacamos el título en tu color primario */
+}
+
+.flip-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
