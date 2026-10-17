@@ -1235,3 +1235,69 @@ html {
         opacity: 1;
     }
 }
+/* ========================================= */
+/* GALERÍA: INTERACTIVIDAD ABSOLUTA (OPCIÓN 3) */
+/* ========================================= */
+
+/* ¿Por qué?: Modificamos la tarjeta contenedora para quitarle el padding y prepararla para la animación. */
+/* ¿Para qué?: Para que la pintura abarque el 100% de la tarjeta desde el inicio y contenga el texto oculto sin desbordarse. */
+.portfolio-section .project-card.glass-panel-alt {
+    position: relative;
+    overflow: hidden;
+    padding: 0; 
+    display: flex; /* Ayuda a que la imagen ocupe todo el espacio internamente */
+}
+
+/* ¿Por qué?: Forzamos a la imagen a ser el fondo absoluto de la tarjeta. */
+/* ¿Para qué?: Eliminar márgenes blancos y asegurar que la pintura sea la estrella absoluta antes del hover. */
+.portfolio-section .project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+    border-radius: 12px;
+    margin: 0 !important; 
+    transition: transform 0.5s ease; /* Transición para un ligero zoom */
+}
+
+/* ¿Por qué?: Posicionamos el contenedor de texto (.project-content) fuera de la vista inferior. */
+/* ¿Para qué?: Crear la "cortina" de cristal oscuro que subirá solo cuando el usuario interactúe. */
+.portfolio-section .project-card .project-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: rgba(10, 25, 47, 0.95); /* Tu azul oscuro casi sólido para máxima legibilidad */
+    backdrop-filter: blur(8px); 
+    transform: translateY(101%); /* Lo empujamos completamente debajo del borde inferior */
+    transition: transform 0.4s cubic-bezier(0.1, 1, 0.3, 1); /* Animación rápida pero con frenado suave y elegante */
+    border-top: 2px solid var(--accent-yellow); /* Línea amarilla técnica de acento */
+    border-radius: 0 0 12px 12px; /* Redondeamos solo las esquinas inferiores */
+}
+
+/* ¿Por qué?: Ajustamos los márgenes de la tipografía interna. */
+/* ¿Para qué?: Mantener un espaciado limpio y ejecutivo dentro del panel flotante. */
+.portfolio-section .project-card .project-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.portfolio-section .project-card .project-content p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+/* EL DISPARADOR MÁGICO */
+/* ¿Por qué?: Pseudo-clase :hover en la tarjeta completa que afecta al .project-content. */
+/* ¿Para qué?: Hace que el panel de texto suba a su posición original (translateY 0) al pasar el ratón. */
+.portfolio-section .project-card:hover .project-content {
+    transform: translateY(0);
+}
+
+/* EFECTO EXTRA */
+/* ¿Por qué?: Pseudo-clase :hover en la tarjeta que afecta a la imagen. */
+/* ¿Para qué?: Genera un levísimo efecto de acercamiento (zoom in) en la pintura mientras sube el texto, añadiendo profundidad. */
+.portfolio-section .project-card:hover img {
+    transform: scale(1.03);
+}

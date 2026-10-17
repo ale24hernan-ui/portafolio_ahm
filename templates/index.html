@@ -345,73 +345,49 @@
     <!-- SECCIÓN: GALERÍA DE PROCESO VISUAL -->
     <!-- ========================================= -->
     
-    <!-- ¿Por qué?: Usamos la etiqueta <section> con el id "galeria" y clases de estilo de tu CSS. -->
-    <!-- ¿Para qué?: Define semánticamente el área en la página y permite que el enlace del menú superior navegue directamente aquí. -->
+    <!-- ¿Por qué?: Contenedor semántico principal de la galería. -->
+    <!-- ¿Para qué?: Aislar el código de esta sección y permitir la navegación por anclas desde el menú. -->
     <section id="galeria" class="portfolio-section bg-alt">
-        
-        <!-- ¿Por qué?: Contenedor delimitador "section-container". -->
-        <!-- ¿Para qué?: Mantiene el contenido centrado y evita que se desborde en monitores ultra anchos. -->
         <div class="section-container">
-            
-            <!-- ¿Por qué?: Etiqueta <h2> con la clase "section-title". -->
-            <!-- ¿Para qué?: Actúa como el encabezado principal de esta sección, heredando el subrayado amarillo de tu CSS. -->
             <h2 class="section-title">Síntesis y Proceso Visual</h2>
             
-            <!-- ¿Por qué?: Div con la clase "projects-grid". -->
-            <!-- ¿Para qué?: Activa el CSS Grid responsivo que acomodará las pinturas en columnas o las apilará en móviles. -->
             <div class="projects-grid">
 
                 <!-- TARJETA 1: FLORERO -->
-                <!-- ¿Por qué?: Elemento <article> con efecto glassmorphism "glass-panel-alt". -->
-                <!-- ¿Para qué?: Encapsula la primera pintura en una tarjeta independiente con fondo translúcido y sombra al hacer hover. -->
+                <!-- ¿Por qué?: Estructura simplificada que depende del CSS para superponer los elementos. -->
+                <!-- ¿Para qué?: Preparar el DOM para el efecto de Hover Glassmorphism. -->
                 <article class="project-card glass-panel-alt">
-                    
-                    <!-- ¿Por qué?: Uso de la función url_for() de Jinja2 (Flask). -->
-                    <!-- ¿Para qué?: Para que el servidor de Flask construya dinámicamente la ruta correcta hacia 'florero.jpg' sin romper el enlace al desplegar en Render. -->
-                    <img src="{{ url_for('static', filename='img/florero.jpg') }}" alt="Composición Floral" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-                    
-                    <!-- ¿Por qué?: Contenedor para el texto descriptivo. -->
-                    <!-- ¿Para qué?: Separa la imagen de la tipografía, manteniendo el margen y formato limpio. -->
+                    <img src="{{ url_for('static', filename='img/florero.jpg') }}" alt="Naturaleza Inmortal">
                     <div class="project-content">
-                        <h3>Estudio Botánico</h3>
-                        <p class="project-description">Estudio de color y simetría natural. Uso de paleta vibrante para equilibrar el peso visual de la composición en acrílico.</p>
+                        <h3>Naturaleza Inmortal</h3>
+                        <p class="project-description">Estudio botánico de alta complejidad que reflexiona sobre la preservación. Una composición vibrante que invita a apreciar la belleza en su entorno de origen.</p>
                     </div>
                 </article>
 
                 <!-- TARJETA 2: AVES AL ATARDECER -->
                 <article class="project-card glass-panel-alt">
-                    <!-- ¿Por qué?: Nueva inyección de url_for() apuntando a 'avesatardecer.jpg'. -->
-                    <!-- ¿Para qué?: Garantizar que la segunda imagen cargue responsivamente adaptándose al 100% del ancho de su tarjeta. -->
-                    <img src="{{ url_for('static', filename='img/avesatardecer.jpg') }}" alt="Aves al Atardecer" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-                    
+                    <img src="{{ url_for('static', filename='img/avesatardecer.jpg') }}" alt="Ecos del Paraíso">
                     <div class="project-content">
-                        <!-- ¿Por qué?: Título conciso y descriptivo en <h3>. -->
-                        <!-- ¿Para qué?: Guiar la mirada del usuario rápidamente hacia el tema de la obra. -->
-                        <h3>Aves y Contraste</h3>
-                        <p class="project-description">Integración de fauna con fondo paisajístico marino. Manejo de contrastes de temperatura entre cálidos intensos y fríos profundos.</p>
+                        <h3>Ecos del Paraíso</h3>
+                        <p class="project-description">Inspirada en la inmersiva narrativa de Ray Bradbury y la riqueza del ecosistema caribeño. Un contraste de temperaturas que captura la esencia pura del entorno natural.</p>
                     </div>
                 </article>
 
                 <!-- TARJETA 3: PAISAJE ROJIZO -->
                 <article class="project-card glass-panel-alt">
-                    <!-- ¿Por qué?: Referencia a 'rojiso.jpg' con bordes redondeados. -->
-                    <!-- ¿Para qué?: Mantener la estética pulida (border-radius: 8px) que armoniza con los contenedores glassmorphism. -->
-                    <img src="{{ url_for('static', filename='img/rojiso.jpg') }}" alt="Paisaje Rojizo" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-                    
+                    <img src="{{ url_for('static', filename='img/rojiso.jpg') }}" alt="Cielo en Llamas">
                     <div class="project-content">
-                        <h3>Atmósfera Estelar</h3>
-                        <p class="project-description">Construcción de profundidad espacial a través de gradientes tonales y texturas terrosas que dirigen el enfoque hacia el horizonte.</p>
+                        <h3>Cielo en Llamas</h3>
+                        <p class="project-description">Las nubes son protagonistas bajo una luna velada, ocultando un conflicto visual a plena vista. Atmósfera intensa construida mediante fuertes gradientes de color.</p>
                     </div>
                 </article>
-                <!-- TARJETA 3: PAISAJE ROJIZO -->
+
+                <!-- TARJETA 4: CEMPASÚCHIL -->
                 <article class="project-card glass-panel-alt">
-                    <!-- ¿Por qué?: Referencia a 'rojiso.jpg' con bordes redondeados. -->
-                    <!-- ¿Para qué?: Mantener la estética pulida (border-radius: 8px) que armoniza con los contenedores glassmorphism. -->
-                    <img src="{{ url_for('static', filename='img/cempasuchil.jpg') }}" alt="Paisaje Rojizo" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-                    
+                    <img src="{{ url_for('static', filename='img/cempasuchil.jpg') }}" alt="Ilusión Botánica">
                     <div class="project-content">
-                        <h3>Atmósfera Estelar</h3>
-                        <p class="project-description">Construcción de profundidad espacial a través de gradientes tonales y texturas terrosas que dirigen el enfoque hacia el horizonte.</p>
+                        <h3>Ilusión Botánica</h3>
+                        <p class="project-description">Fusión magistral de flora y fauna impulsada por la teoría del color. El contraste tridimensional entre el esmeralda y el vibrante naranja crea un camuflaje orgánico fascinante.</p>
                     </div>
                 </article>
 
