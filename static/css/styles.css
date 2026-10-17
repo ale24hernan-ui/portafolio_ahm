@@ -55,7 +55,28 @@ body {
     list-style: none;
     gap: 2rem;
 }
+/* =========================================
+   ESTILOS DEL MENÚ HAMBURGUESA (BASE)
+   ========================================= */
 
+/* ¿Por qué?: display: none; por defecto. */
+/* ¿Para qué?: Para que el botón de 3 líneas NO se vea en monitores de PC, donde sí caben los textos. */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+/* ¿Por qué?: Dimensiones y color de la clase .bar. */
+/* ¿Para qué?: Dibuja las tres líneas horizontales que conforman el ícono clásico de menú. */
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
 .nav-links a {
     text-decoration: none;
     color: var(--text-light);
@@ -919,6 +940,46 @@ html {
     .glass-panel h2 {
          /* Reducimos ligeramente el H2 */
         font-size: clamp(1rem, 5vw, 1.3rem);
+    }
+    /* =========================================
+       NAVEGACIÓN EN DISPOSITIVOS MÓVILES
+       ========================================= */
+
+    /* ¿Por qué?: Cambiamos el display a flex. */
+    /* ¿Para qué?: Para hacer visible el botón hamburguesa únicamente en celulares. */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* ¿Por qué?: Reescribimos la clase .nav-links con position: absolute. */
+    /* ¿Para qué?: Para sacar los enlaces del flujo horizontal y apilarlos verticalmente en un panel que caerá desde arriba. */
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Inicia justo debajo de la barra oscura del header */
+        left: 0;
+        width: 100%;
+        background: rgba(10, 25, 47, 0.95); /* Fondo Dark Mode muy sólido */
+        backdrop-filter: blur(10px);
+        flex-direction: column; /* Apila los links de arriba hacia abajo */
+        align-items: center; /* Los centra en la pantalla */
+        padding: 2rem 0;
+        gap: 2rem;
+        
+        /* LA MAGIA DE LA ANIMACIÓN */
+        /* ¿Por qué?: translateY(-150%) y opacity: 0. */
+        /* ¿Para qué?: Esconde el menú empujándolo hacia arriba y haciéndolo invisible por defecto. */
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.4s ease; /* Movimiento fluido */
+        border-bottom: 1px solid var(--glass-border);
+        z-index: 999;
+    }
+
+    /* ¿Por qué?: Creamos la subclase .nav-links.active. */
+    /* ¿Para qué?: Cuando JavaScript inyecte la palabra 'active', el menú bajará (translateY 0) y se hará visible (opacity 1). */
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 /* =========================================

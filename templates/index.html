@@ -8,10 +8,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <!-- Barra de Navegación -->
     <header class="main-header">
         <nav class="navbar">
             <div class="logo">AHM</div>
+            
+            <!-- NUEVO: BOTÓN HAMBURGUESA PARA MÓVILES -->
+            <!-- ¿Por qué?: Creamos un div con la clase 'menu-toggle' e id 'mobile-menu'. -->
+            <!-- ¿Para qué?: Actuará como el botón físico que el usuario tocará en su celular para abrir la navegación. -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#habilidades">Habilidades</a></li>
