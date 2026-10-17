@@ -262,31 +262,39 @@
 
                     // ¿Por qué?: Bucle for de 10 iteraciones.
                     // ¿Para qué?: Generar y animar las 10 micro-chispas visuales alrededor del cursor.
-                    for (let i = 0; i < 12; i++) {
+                    // ¿Por qué?: Aumentamos a 30 iteraciones.
+                    // ¿Para qué?: Un fuego artificial real necesita alta densidad. 30 partículas crean una explosión volumétrica innegable.
+                    for (let i = 0; i < 30; i++) {
                         const chispa = document.createElement('div');
                         chispa.className = 'micro-chispa';
                         chispa.style.left = e.pageX + 'px';
                         chispa.style.top = e.pageY + 'px';
                         
                         const angulo = Math.random() * Math.PI * 2;
-                        const distancia = Math.random() * 80 + 20;
+                        
+                        // ¿Por qué?: Multiplicamos por 150 y sumamos 50.
+                        // ¿Para qué?: Radio masivo. Las chispas ahora viajarán entre 50px y 200px de distancia desde el centro del clic.
+                        const distancia = Math.random() * 150 + 50;
+                        
                         chispa.style.setProperty('--tx', `${Math.cos(angulo) * distancia}px`);
                         chispa.style.setProperty('--ty', `${Math.sin(angulo) * distancia}px`);
                         
-                        chispa.style.animation = `explosion-chispa 1s cubic-bezier(0, .9, .57, 1) forwards`;
+                        // ¿Por qué?: Tiempo a 1.8s con curva "ease-out" pronunciada (0.1, 1, 0.3, 1).
+                        // ¿Para qué?: La explosión sale disparada muy rápido al inicio y se frena suavemente al final, como la pólvora real.
+                        chispa.style.animation = `explosion-chispa 1.8s cubic-bezier(0.1, 1, 0.3, 1) forwards`;
                         document.body.appendChild(chispa);
-                        setTimeout(() => chispa.remove(), 1200);
+                        
+                        // Sincronizamos la limpieza con los 1800ms que dura la animación.
+                        setTimeout(() => chispa.remove(), 1800);
                     }
 
-                    // ¿Por qué?: setTimeout envuelve el window.location.href a 1000 milisegundos.
-                    // ¿Para qué?: Es la resolución de la carrera. Obligamos al navegador a esperar 1 segundo visualizando el efecto antes de redirigir a WhatsApp.
+                    // ¿Por qué?: Subimos el tiempo de redirección a 2000 milisegundos (2 segundos).
+                    // ¿Para qué?: Para darle al usuario el tiempo físico de observar la explosión completa de 1.8s antes de que la pestaña se desenfoque.
                     setTimeout(() => {
                         window.open(urlDestino, '_blank');
-                    }, 1000);
+                    }, 2000);
 
-                    // ¿Por qué?: remove() limpia el DOM tras la ejecución.
-                    // ¿Para qué?: Para no dejar "basura" invisible en el HTML tras terminar la animación.
-                    setTimeout(() => texto.remove(), 1200);
+                    setTimeout(() => texto.remove(), 2200);
                 });
             });
         });

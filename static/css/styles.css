@@ -938,22 +938,34 @@ html {
 }
 
 .micro-chispa {
-    position: absolute; /* ¿Por qué?: Independencia del flujo HTML. ¿Para qué?: Poder dibujarlas libremente en el lugar del clic. */
-    width: 8px; /* ¿Por qué?: 4 píxeles exactos. ¿Para qué?: Asegurar un diámetro milimétrico para el efecto contenido y premium. */
-    height: 8px; /* ¿Por qué?: 4 píxeles de alto. ¿Para qué?: Mantener simetría 1:1 para construir una circunferencia perfecta. */
-    background-color: #ffd700; /* ¿Por qué?: Hexadecimal dorado sólido. ¿Para qué?: Emular la chispa ígnea que destaque en tu entorno Dark Mode. */
-    border-radius: 50%; /* ¿Por qué?: Radio al máximo. ¿Para qué?: Transforma el contenedor cuadrado en un círculo visualmente suave. */
-    pointer-events: none; /* ¿Por qué?: Invisibilidad ante el clic. ¿Para qué?: El usuario no debe poder hacer clic accidentalmente en una chispa. */
-    z-index: 9998; /* ¿Por qué?: Índice justo inferior al texto. ¿Para qué?: El elogio es la prioridad semántica, las chispas son el marco escénico. */
+    position: absolute; 
+    /* ¿Por qué?: Tamaño intermedio de 6px. ¿Para qué?: Suficientemente grande para verse, pero no tan gigante que parezca un error. */
+    width: 6px; 
+    height: 6px; 
+    background-color: var(--accent-yellow); 
+    border-radius: 50%; 
+    pointer-events: none; 
+    z-index: 9998; 
+    /* NUEVO - ¿Por qué?: Doble box-shadow (amarillo y naranja). ¿Para qué?: Crea un efecto de incandescencia lumínica tipo "fuego artificial". */
+    box-shadow: 0 0 10px var(--accent-yellow), 0 0 20px #ff8c00;
 }
 
-@keyframes flotar-suave {
-    /* ¿Por qué?: Fotograma 0%. ¿Para qué?: Estado inicial completamente transparente, ligeramente encogido y cerca del cursor. */
-    0% { opacity: 0; transform: translate(-50%, -10px) scale(0.8); }
-    /* ¿Por qué?: Fotograma 20%. ¿Para qué?: Pasa a opacidad total, estalla a escala real y sube ligeramente creando el efecto "Pop". */
-    20% { opacity: 1; transform: translate(-50%, -25px) scale(1); }
-    /* ¿Por qué?: Fotograma 100%. ¿Para qué?: Asciende a su límite máximo de 1cm (-35px), se disipa (opacity 0) y se contrae. */
-    100% { opacity: 0; transform: translate(-50%, -35px) scale(0.9); }
+/* NUEVO - ¡Este es el motor de la animación que faltaba! */
+@keyframes explosion-chispa {
+    0% { 
+        /* ¿Por qué?: Inicio en el centro exacto del ratón. */
+        transform: translate(0, 0) scale(1); 
+        opacity: 1; 
+    }
+    60% {
+        /* ¿Por qué?: Mantiene la opacidad al 100% más de la mitad del tiempo. ¿Para qué?: Evita que se desvanezcan demasiado rápido. */
+        opacity: 1; 
+    }
+    100% { 
+        /* ¿Por qué?: Agregamos '+ 40px' al eje Y final. ¿Para qué?: Simula la gravedad, haciendo que las chispas caigan un poco al final de su trayectoria. */
+        transform: translate(var(--tx), calc(var(--ty) + 40px)) scale(0); 
+        opacity: 0; 
+    }
 }
 /* =========================================
    NUEVO COMPONENTE: FLIP CARDS DE HABILIDADES
