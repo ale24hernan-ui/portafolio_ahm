@@ -251,13 +251,22 @@
                     audioExito.volume = 0.2;
                     audioExito.play().catch(e => console.log('El audio requiere interacción previa'));
 
-                    // ¿Por qué?: createElement genera un <span> inyectando las coordenadas X y Y del evento click.
-                    // ¿Para qué?: Para colocar la palabra motivacional exactamente donde el usuario apuntó el ratón.
+                    // ¿Por qué?: Creamos dinámicamente un nodo <span>.
+                    // ¿Para qué?: Para construir el contenedor que alojará el elogio de retroalimentación.
                     const texto = document.createElement('span');
                     texto.className = 'texto-elegante';
                     texto.innerText = elogios[Math.floor(Math.random() * elogios.length)];
-                    texto.style.left = e.pageX + 'px';
-                    texto.style.top = e.pageY + 'px';
+                    
+                    // ¿Por qué?: Envolvemos e.pageX en paréntesis y le sumamos 30 píxeles.
+                    // ¿Para qué?: Para desplazar físicamente el punto de origen hacia la derecha del cursor, sacando el texto del área visual del botón.
+                    texto.style.left = (e.pageX + 30) + 'px';
+                    
+                    // ¿Por qué?: Envolvemos e.pageY en paréntesis y le restamos 20 píxeles.
+                    // ¿Para qué?: Para elevar el texto desde su nacimiento (en la web web, restar en Y significa subir), colocándolo en la esquina superior derecha deseada.
+                    texto.style.top = (e.pageY - 20) + 'px';
+                    
+                    // ¿Por qué?: Inyectamos el nodo modificado en el cuerpo del documento.
+                    // ¿Para qué?: Para que el navegador renderice la animación con las nuevas coordenadas descentradas.
                     document.body.appendChild(texto);
 
                     // ¿Por qué?: Bucle for de 10 iteraciones.
