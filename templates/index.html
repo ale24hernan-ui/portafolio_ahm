@@ -312,46 +312,59 @@
             
         });
 
-// ... (código previo) ...
-const btnContacto = document.getElementById('btn-whatsapp');
+// ¿Por qué?: Reemplazamos getElementById por querySelectorAll apuntando a '.btn-contacto-animado'.
+// ¿Para qué?: Para capturar una colección (NodeList) con TODOS los botones de contacto presentes en el DOM, escalando la solución sin importar cuántos botones agregues en el futuro.
+const botonesContacto = document.querySelectorAll('.btn-contacto-animado');
+
+// ¿Por qué?: Declaramos el arreglo de cadenas de texto.
+// ¿Para qué?: Para alimentar la micro-interacción visual con elogios dinámicos y aleatorios.
 const elogios = ["¡Buena elección!", "¡Good job!", "¡Excelente!"];
 
-btnContacto.addEventListener('click', function(e) {
-    // 1. EL CONTROL DEL TIEMPO (NUEVO)
-    // ¿Por qué?: Invocamos preventDefault() sobre el objeto del evento 'e'.
-    // ¿Para qué?: Para cancelar la orden nativa del navegador de abrir el enlace instantáneamente. Esto "congela" la navegación.
-    e.preventDefault(); 
-    
-    // ¿Por qué?: Guardamos el atributo 'href' original del botón en una constante.
-    // ¿Para qué?: Como bloqueamos la redirección arriba, necesitamos memorizar a dónde quería ir el usuario para enviarlo manualmente después.
-    const urlDestino = this.href;
+// ¿Por qué?: Utilizamos el método forEach sobre el NodeList.
+// ¿Para qué?: Para iterar sobre cada botón encontrado y adjuntar un EventListener individual a cada uno, asegurando cobertura total.
+botonesContacto.forEach(boton => {
+    boton.addEventListener('click', function(e) {
+        
+        // ¿Por qué?: Invocamos e.preventDefault() en el evento.
+        // ¿Para qué?: Para anular la navegación nativa instantánea de la etiqueta HTML <a>, ganando el tiempo necesario para ejecutar tu animación.
+        e.preventDefault(); 
+        
+        // ¿Por qué?: Almacenamos 'this.href' en una constante local.
+        // ¿Para qué?: Para conservar en memoria la URL de destino de WhatsApp del botón específico que fue presionado.
+        const urlDestino = this.href;
 
-    // 2. TU CÓDIGO DE AUDIO Y ANIMACIÓN (MANTENIDO EXACTAMENTE IGUAL)
-    const audioExito = new Audio('static/audio/chispa-suave.mp3'); 
-    audioExito.volume = 0.2;
-    audioExito.play();
+        // ¿Por qué?: Instanciamos un nuevo objeto Audio y ajustamos su volumen al 20%.
+        // ¿Para qué?: Para disparar el estímulo auditivo ('chispa-suave.mp3') de forma elegante y no invasiva para el usuario.
+        const audioExito = new Audio('static/audio/chispa-suave.mp3'); 
+        audioExito.volume = 0.2;
+        audioExito.play();
 
-    const texto = document.createElement('span');
-    texto.className = 'texto-elegante';
-    texto.innerText = elogios[Math.floor(Math.random() * elogios.length)];
-    texto.style.left = e.pageX + 'px';
-    texto.style.top = e.pageY + 'px';
-    document.body.appendChild(texto);
+        // ¿Por qué?: Creamos dinámicamente un nodo <span> con la clase 'texto-elegante'.
+        // ¿Para qué?: Para construir e inyectar el elogio en el DOM, asignándole las coordenadas exactas (e.pageX, e.pageY) del puntero del ratón en el momento del clic.
+        const texto = document.createElement('span');
+        texto.className = 'texto-elegante';
+        texto.innerText = elogios[Math.floor(Math.random() * elogios.length)];
+        texto.style.left = e.pageX + 'px';
+        texto.style.top = e.pageY + 'px';
+        document.body.appendChild(texto);
 
-    for (let i = 0; i < 5; i++) {
-        // ... (código de chispas intacto) ...
-    }
+        // Lógica de generación de partículas (micro-chispas)
+        for (let i = 0; i < 5; i++) {
+            // (Inserta aquí tu código original de chispas intacto)
+        }
 
-    // 3. LA LIBERACIÓN DE LA CONDICIÓN DE CARRERA (NUEVO)
-    // ¿Por qué?: Usamos setTimeout() con un retraso de 1000 milisegundos (1 segundo).
-    // ¿Para qué?: Para crear el compás de espera exacto que permite al usuario apreciar la micro-interacción antes de que la página cambie.
-    setTimeout(() => {
-        // ¿Por qué?: Invocamos window.open() pasándole nuestra URL guardada y el parámetro '_blank'.
-        // ¿Para qué?: Para ejecutar manualmente la redirección hacia WhatsApp en una pestaña nueva, completando el ciclo del botón.
-        window.open(urlDestino, '_blank');
-    }, 1000);
+        // ¿Por qué?: Envolvemos la redirección final en un setTimeout de 1000 milisegundos.
+        // ¿Para qué?: Para crear un compás de espera de 1 segundo exacto, permitiendo que la animación CSS concluya antes de abandonar el portafolio.
+        setTimeout(() => {
+            // ¿Por qué?: Sustituimos window.open() por window.location.href.
+            // ¿Para qué?: Para evitar que los escudos de seguridad del navegador bloqueen la acción asíncrona. Redirigir en la misma ventana garantiza que el flujo hacia tu CRM B2B en WhatsApp no se interrumpa.
+            window.location.href = urlDestino;
+        }, 1000);
 
-    setTimeout(() => texto.remove(), 1200);
+        // ¿Por qué?: Programamos la eliminación del elemento 'texto' a los 1200 milisegundos.
+        // ¿Para qué?: Para realizar recolección de basura (Garbage Collection) manual, evitando saturar el DOM con nodos huérfanos e invisibles tras la interacción.
+        setTimeout(() => texto.remove(), 1200);
+    });
 });
 });
         <!-- SECCIÓN: PIE DE PÁGINA (CONTACTO) -->
