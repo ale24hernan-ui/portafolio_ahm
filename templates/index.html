@@ -63,12 +63,6 @@
 
             <!-- COLUMNA DERECHA: PRESENTACIÓN PRINCIPAL -->
             <div class="hero-content">
-                <!-- BOTÓN 1: SE AÑADIÓ btn-contacto-animado -->
-                <a href="https://wa.me/5219987671050?text=Hola%20Alejandro,%20he%20visto%20tu%20portafolio%20técnico%20y%20me%20gustaría%20contactarte." 
-                   id="btn-whatsapp" 
-                   class="btn btn-secondary btn-contacto-animado">
-                   Contactar
-                </a>
                 
                 <h1>Hola, soy <span>Alejandro Monroy</span></h1>
                 <h2>Data Scientist & Backend Integration Specialist</h2>
@@ -287,7 +281,7 @@
                     // ¿Por qué?: setTimeout envuelve el window.location.href a 1000 milisegundos.
                     // ¿Para qué?: Es la resolución de la carrera. Obligamos al navegador a esperar 1 segundo visualizando el efecto antes de redirigir a WhatsApp.
                     setTimeout(() => {
-                        window.location.href = urlDestino;
+                        window.open(urlDestino, '_blank');
                     }, 1000);
 
                     // ¿Por qué?: remove() limpia el DOM tras la ejecución.
