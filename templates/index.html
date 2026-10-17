@@ -312,9 +312,37 @@
                         window.open(urlDestino, '_blank');
                     }, 2000);
 
+                    // ... (Aquí termina el setTimeout de 2200 de las chispas)
                     setTimeout(() => texto.remove(), 2200);
                 });
             });
+
+            // =========================================
+            // LÓGICA DEL MENÚ HAMBURGUESA (MÓVILES)
+            // =========================================
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileMenu && navLinks) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+            // =========================================
+            // FIN LÓGICA DEL MENÚ HAMBURGUESA
+            // =========================================
+
+        }); // <-- Esta es la última llave original que cierra el DOMContentLoaded
+    </script>
+
+    <!-- SECCIÓN: GALERÍA DE PROCESO VISUAL -->
+    <section id="galeria" class="portfolio-section bg-alt">
         });
     </script>
 
