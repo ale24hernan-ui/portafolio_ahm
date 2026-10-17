@@ -939,8 +939,8 @@ html {
 
 .micro-chispa {
     position: absolute; /* ¿Por qué?: Independencia del flujo HTML. ¿Para qué?: Poder dibujarlas libremente en el lugar del clic. */
-    width: 4px; /* ¿Por qué?: 4 píxeles exactos. ¿Para qué?: Asegurar un diámetro milimétrico para el efecto contenido y premium. */
-    height: 4px; /* ¿Por qué?: 4 píxeles de alto. ¿Para qué?: Mantener simetría 1:1 para construir una circunferencia perfecta. */
+    width: 8px; /* ¿Por qué?: 4 píxeles exactos. ¿Para qué?: Asegurar un diámetro milimétrico para el efecto contenido y premium. */
+    height: 8px; /* ¿Por qué?: 4 píxeles de alto. ¿Para qué?: Mantener simetría 1:1 para construir una circunferencia perfecta. */
     background-color: #ffd700; /* ¿Por qué?: Hexadecimal dorado sólido. ¿Para qué?: Emular la chispa ígnea que destaque en tu entorno Dark Mode. */
     border-radius: 50%; /* ¿Por qué?: Radio al máximo. ¿Para qué?: Transforma el contenedor cuadrado en un círculo visualmente suave. */
     pointer-events: none; /* ¿Por qué?: Invisibilidad ante el clic. ¿Para qué?: El usuario no debe poder hacer clic accidentalmente en una chispa. */

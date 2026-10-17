@@ -262,20 +262,20 @@
 
                     // ¿Por qué?: Bucle for de 10 iteraciones.
                     // ¿Para qué?: Generar y animar las 10 micro-chispas visuales alrededor del cursor.
-                    for (let i = 0; i < 10; i++) {
+                    for (let i = 0; i < 12; i++) {
                         const chispa = document.createElement('div');
                         chispa.className = 'micro-chispa';
                         chispa.style.left = e.pageX + 'px';
                         chispa.style.top = e.pageY + 'px';
                         
-                        const angulo = Math.random() * Math.PI * 4;
-                        const distancia = Math.random() * 60 + 10;
+                        const angulo = Math.random() * Math.PI * 2;
+                        const distancia = Math.random() * 80 + 20;
                         chispa.style.setProperty('--tx', `${Math.cos(angulo) * distancia}px`);
                         chispa.style.setProperty('--ty', `${Math.sin(angulo) * distancia}px`);
                         
                         chispa.style.animation = `explosion-chispa 1s cubic-bezier(0, .9, .57, 1) forwards`;
                         document.body.appendChild(chispa);
-                        setTimeout(() => chispa.remove(), 1000);
+                        setTimeout(() => chispa.remove(), 1200);
                     }
 
                     // ¿Por qué?: setTimeout envuelve el window.location.href a 1000 milisegundos.
