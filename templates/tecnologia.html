@@ -2,16 +2,14 @@
 <!-- ¿Para qué?: Mantener automáticamente el menú fijo superior, el pie de página y el script de chispas sin duplicar código. -->
 {% extends 'base.html' %}
 
-<!-- ¿Por qué?: Personalizamos el bloque 'title' de Jinja2. -->
-<!-- ¿Para qué?: Indicar en la pestaña del navegador que el usuario está en tu sección de Ingeniería de Software y Ciencia de Datos. -->
-{% block title %}Alejandro Monroy | 40% Tecnología, Software & Datos{% endblock %}
+<!-- ¿Por qué?: Personalizamos el bloque 'title' de Jinja2 destacando tecnología con propósito humano. -->
+<!-- ¿Para qué?: Mostrar que tu ingeniería tiene un impacto directo en la vida de las personas. -->
+{% block title %}Alejandro Monroy | 40% Tecnología con Propósito, Software & Datos{% endblock %}
 
 {% block content %}
 <!-- ========================================= -->
 <!-- ENCABEZADO DE LA SECCIÓN TECNOLOGÍA (40%) -->
 <!-- ========================================= -->
-<!-- ¿Por qué?: Reutilizamos la clase 'hero-section' pero ajustando 'min-height: 60vh'. -->
-<!-- ¿Para qué?: Dar una bienvenida ejecutiva con la cuadrícula de fondo sin obligar al usuario a hacer demasiado scroll inicial. -->
 <section class="hero-section" style="min-height: 60vh; padding-top: 130px;">
     <div class="glass-panel" style="max-width: 950px;">
         <!-- ¿Por qué?: Etiqueta superior con el porcentaje y el color amarillo de acento. -->
@@ -19,38 +17,37 @@
         <p style="color: var(--accent-yellow); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">
             Pilar 01 • 40% del Perfil Integral
         </p>
-        <h1>Ingeniería de Software & <span>Ciencia de Datos</span></h1>
-        <h2>Arquitectura Backend, Automatización B2B & Machine Learning</h2>
+        <h1>Ingeniería de Software & <span>Empatía Digital</span></h1>
+        <h2>Reducir la Fricción Tecnológica para Facilitarle la Vida a las Personas</h2>
+        <!-- ¿Por qué?: Incorporamos tu reflexión sobre el privilegio tecnológico directamente en el manifiesto de esta vista. -->
+        <!-- ¿Para qué?: Diferenciarte del 99% de los programadores: tú programas para derribar barreras humanas. -->
         <p style="margin-bottom: 0;">
-            Diseño sistemas que resuelven problemas operativos reales. Combino orquestación de flujos autohospedados en Docker y n8n, desarrollo web en Python/Flask y modelos predictivos de datos para transformar operaciones complejas en procesos escalables.
+            Para quien creció entre código y pantallas, leer un correo, estructurar un archivo o usar un sistema es tan natural como respirar; pero comprendí que esa facilidad es un privilegio que no todos tuvieron. Aplico todo lo que aprendo en ingeniería de software y ciencia de datos para acortar la distancia entre el punto A y el punto B, haciendo que la tecnología trabaje a favor de las personas y no al revés.
         </p>
     </div>
 </section>
 
 <!-- ========================================= -->
-<!-- BLOQUE 1: ARQUITECTURA DE SOFTWARE & B2B  -->
+<!-- BLOQUE 1: ARQUITECTURA CON PROPÓSITO      -->
 <!-- ========================================= -->
-<!-- ¿Por qué?: Abrimos una sección con fondo alterno 'bg-alt'. -->
-<!-- ¿Para qué?: Separar visualmente los sistemas en producción de los modelos de Ciencia de Datos. -->
 <section class="skills-section bg-alt">
     <div class="section-container">
-        <h2 class="section-title">Sistemas B2B & Automatización en Producción</h2>
+        <h2 class="section-title">Sistemas Creados para Ayudar a Personas Reales</h2>
 
-        <!-- ¿Por qué?: Usamos 'detailed-cards-grid' y 'skill-category glass-panel-alt' en lugar de 'project-card'. -->
-        <!-- ¿Para qué?: Evitar que se active por error la cortina oculta de la galería de arte y mostrar todo el detalle técnico limpio. -->
         <div class="detailed-cards-grid">
 
-            <!-- PROYECTO 1: PROYECTO GRAN BLANCO (APEX) -->
+            <!-- PROYECTO 1: PROYECTO GRAN BLANCO (APEX) REENFOCADO EN EMPATÍA HUMANA -->
+            <!-- ¿Por qué?: Eliminamos la mención a TSA Comercial y presentamos Gran Blanco como tu iniciativa personal para democratizar la tecnología en el trabajo. -->
+            <!-- ¿Para qué?: Destacar el valor humano de tu arquitectura (reducir movimientos del punto A al B para jefes y subordinados) manteniendo todo el peso técnico de tu stack. -->
             <article class="skill-category glass-panel-alt">
-                <h3>Proyecto Gran Blanco (Asistente Híbrido APEX)</h3>
-                <p class="project-date">2025 - Presente | TSA Comercial</p>
+                <h3>Proyecto Gran Blanco (Asistente Operativo Híbrido APEX)</h3>
+                <p class="project-date">Iniciativa Personal de Automatización • Arquitectura ERP/CRM</p>
                 <p class="project-description">
-                    Inició como un concepto ERP y evolucionó hacia un CRM comercial, adaptándose hoy a los límites técnicos del entorno de pruebas de SAP para operar como un <strong>asistente personal operativo híbrido (entre ERP y CRM)</strong> que suma automatizaciones continuas en cada proceso viable.
+                    Proyecto personal nacido al observar la brecha digital en el entorno laboral: donde antes una persona sufría con múltiples pasos técnicos para redactar un correo, consultar información o generar un documento, diseñé a <strong>APEX</strong> para reducir al mínimo los movimientos necesarios entre el punto A y el punto B, aliviando la carga operativa de mis compañeros y entregando certidumbre inmediata a mis líderes.
                 </p>
                 <ul class="project-impact">
-                    <li>Orquestación autohospedada en Docker y n8n conectada a WhatsApp Business Cloud API oficial.</li>
-                    <li>Nodo clasificador de red silencioso con IA que retorna JSON puro y extrae contactos vía remoteJid.</li>
-                    <li>Generación de documentos con Gotenberg (100% open-source) y persistencia en PostgreSQL.</li>
+                    <li><strong>Puente Accesible por WhatsApp:</strong> Orquestación autohospedada en Docker y n8n conectada a WhatsApp Business Cloud API oficial, llevando funciones complejas a la aplicación que todos ya saben usar.</li>
+                    <li><strong>Inteligencia Invisible:</strong> Clasificador de red silencioso con IA que interpreta la intención del usuario en JSON puro y automatiza la generación de documentos con Gotenberg (100% open-source) y PostgreSQL.</li>
                 </ul>
                 <div class="tech-stack-tags">
                     <span class="tag">Python</span>
@@ -58,22 +55,24 @@
                     <span class="tag">Docker</span>
                     <span class="tag">PostgreSQL</span>
                     <span class="tag">WhatsApp Cloud API</span>
-                    <span class="tag">SAP B1</span>
+                    <span class="tag">ERP REST API</span>
                     <span class="tag">Gotenberg</span>
                 </div>
             </article>
 
             <!-- PROYECTO 2: ART-TOURS TRANSFER (ATT) -->
+            <!-- ¿Por qué?: Enfocamos también ATT en cómo simplifica la operación real de transporte. -->
+            <!-- ¿Para qué?: Mantener un hilo conductor coherente de tecnología al servicio de las personas. -->
             <article class="skill-category glass-panel-alt">
                 <h3>Art-Tours Transfer (SaaS Logístico B2B)</h3>
-                <p class="project-date">2026 | ART-TOURS TRANSFERS S.A. de C.V.</p>
+                <p class="project-date">2026 | Plataforma de Gestión y Transporte</p>
                 <p class="project-description">
-                    Plataforma web y sistema SaaS de gestión de reservas y logística de transporte turístico e interurbano, diseñado para controlar la operación de unidades (Toyota Sienna) y automatizar confirmaciones.
+                    Plataforma web y sistema SaaS de reservas y logística de transporte turístico e interurbano, creado para simplificar el control de unidades en ruta y automatizar confirmaciones sin papeleo manual.
                 </p>
                 <ul class="project-impact">
                     <li>Arquitectura backend construida con Python y Flask servida mediante Gunicorn en Render.</li>
-                    <li>Generación automatizada de comprobantes con FPDF y disparo de eventos por webhooks hacia n8n.</li>
-                    <li>Base de datos relacional en PostgreSQL e interfaz dinámica en Vanilla JavaScript.</li>
+                    <li>Generación instantánea de comprobantes y disparo de eventos por webhooks hacia flujos automatizados en n8n.</li>
+                    <li>Base de datos relacional en PostgreSQL e interfaz ágil en Vanilla JavaScript.</li>
                 </ul>
                 <div class="tech-stack-tags">
                     <span class="tag">Python</span>
@@ -87,14 +86,14 @@
 
             <!-- PROYECTO 3: BRAVE POWER STUDIO & CONSULTORÍA -->
             <article class="skill-category glass-panel-alt">
-                <h3>Brave Power Studio & Soluciones Web B2B</h3>
+                <h3>Brave Power Studio & Soluciones Digitales</h3>
                 <p class="project-date">2026 | Clientes Privados (Xalapa / Cancún)</p>
                 <p class="project-description">
-                    Desarrollo de plataforma web y sistema de administración de reservas de clases para estudio de entrenamiento en Xalapa, Veracruz, además de soluciones digitales para marcas como Sannamovement.
+                    Desarrollo de plataforma web y sistema de administración de reservas para estudio de entrenamiento en Xalapa, Veracruz, además de soluciones digitales para marcas independientes, ahorrando horas de gestión manual a sus fundadores.
                 </p>
                 <ul class="project-impact">
-                    <li>Flujos de agendamiento integrados con avisos automatizados por WhatsApp.</li>
-                    <li>Diseño responsivo centrado en la conversión de usuarios y administración ágil de horarios.</li>
+                    <li>Flujos de agendamiento intuitivos integrados con avisos automatizados por WhatsApp.</li>
+                    <li>Diseño responsivo pensado para que cualquier usuario reserve en segundos desde su teléfono.</li>
                 </ul>
                 <div class="tech-stack-tags">
                     <span class="tag">HTML5</span>
@@ -112,8 +111,6 @@
 <!-- ========================================= -->
 <!-- BLOQUE 2: CIENCIA DE DATOS & ML           -->
 <!-- ========================================= -->
-<!-- ¿Por qué?: Sección dedicada a tu portafolio analítico y predictivo de TripleTen. -->
-<!-- ¿Para qué?: Demostrar rigor matemático, estadístico y de Machine Learning ante reclutadores de Data Science. -->
 <section class="skills-section">
     <div class="section-container">
         <h2 class="section-title">Ciencia de Datos & Machine Learning</h2>
@@ -185,8 +182,6 @@
 <!-- ========================================= -->
 <!-- BLOQUE 3: STACK TECNOLÓGICO & FLIP CARDS  -->
 <!-- ========================================= -->
-<!-- ¿Por qué?: Conservamos tus íconos circulares y las tarjetas giratorias 3D de tu diseño original. -->
-<!-- ¿Para qué?: Mantener esa interactividad visual en la página donde el usuario evalúa tus capacidades técnicas. -->
 <section class="skills-section bg-alt">
     <div class="section-container">
         <h2 class="section-title">Stack Tecnológico & Capacidades</h2>
@@ -224,7 +219,7 @@
                 <h3>Ciencia de Datos, APIs & IA</h3>
                 <ul class="skill-list">
                     <li><strong>Librerías ML/Data:</strong> Pandas, NumPy, SciPy, Scikit-learn</li>
-                    <li><strong>APIs Corporativas:</strong> Meta WhatsApp Cloud API, SAP Business One, Gemini API</li>
+                    <li><strong>APIs e Integraciones:</strong> Meta WhatsApp Cloud API, ERP REST APIs, Gemini API</li>
                     <li><strong>Entorno Ingenieril:</strong> VS Code, WSL2, Git, GitHub, Postman</li>
                 </ul>
             </div>
@@ -241,7 +236,7 @@
                     </div>
                     <div class="flip-card-back">
                         <p class="title">Impacto</p>
-                        <p>Arquitectura transaccional B2B y modelos predictivos.</p>
+                        <p>Sistemas que simplifican la operación diaria y modelos predictivos.</p>
                     </div>
                 </div>
             </div>
@@ -262,12 +257,12 @@
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <i class="ph ph-robot" style="font-size: 2.5rem; color: var(--accent-yellow); margin-bottom: 1rem;"></i>
-                        <p class="title">APIs & Agentforce</p>
-                        <p>WhatsApp Cloud, SAP B1, Gemini</p>
+                        <p class="title">Empatía & IA</p>
+                        <p>WhatsApp Cloud, REST APIs, Gemini</p>
                     </div>
                     <div class="flip-card-back">
                         <p class="title">Impacto</p>
-                        <p>Clasificadores silenciosos en JSON y asistencia operativa híbrida.</p>
+                        <p>Menos pasos entre el punto A y el punto B para cada usuario.</p>
                     </div>
                 </div>
             </div>
