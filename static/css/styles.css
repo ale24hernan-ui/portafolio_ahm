@@ -814,6 +814,36 @@ html {
     );
     transform: scale(1.04);
 }
+/* =========================================================
+   SINCRONIZACIÓN BIDIRECCIONAL (ANILLO <-> LEYENDA)
+   ========================================================= */
+
+/* ¿Por qué?: Creamos la clase '.ring-hover-active' para el contenedor de la leyenda. */
+/* ¿Para qué?: Para atenuar al 40% los 4 textos inferiores cuando el usuario está explorando directamente los colores del círculo. */
+.composition-legend.ring-hover-active .legend-item {
+    opacity: 0.4;
+    filter: grayscale(70%);
+}
+
+/* ¿Por qué?: Creamos la clase '.active-slice' para el ítem específico cuyo color se está tocando en el anillo. */
+/* ¿Para qué?: Para encender al 100%, quitar el filtro gris y desplazar 10px a la derecha el texto que corresponde al color bajo el mouse. */
+.composition-legend.ring-hover-active .legend-item.active-slice {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: translateX(10px) scale(1.05);
+}
+
+/* ¿Por qué?: Apuntamos al título dentro del '.legend-item.active-slice'. */
+/* ¿Para qué?: Para que el título de la leyenda brille en amarillo racing igual que cuando pasas el cursor sobre las letras. */
+.composition-legend.ring-hover-active .legend-item.active-slice .legend-title {
+    color: var(--accent-yellow);
+}
+
+/* ¿Por qué?: Añadimos cursor pointer al gráfico circular. */
+/* ¿Para qué?: Indicar visualmente al usuario que cada color del anillo también es interactivo y clickeable. */
+.composition-chart {
+    cursor: pointer;
+}
 /* =========================================
    PIE DE PÁGINA (FOOTER / CONTACTO)
    ========================================= */
