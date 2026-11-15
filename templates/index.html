@@ -139,41 +139,130 @@
 
 {% block scripts %}
 <script>
-    // ¿Por qué?: Encapsulamos la lógica del anillo únicamente en el bloque scripts de index.html.
-    // ¿Para qué?: Evitar errores de referencias nulas en las páginas internas donde el gráfico circular no está presente.
+    // ¿Por qué?: Esperamos a que el DOM termine de construirse antes de buscar los nodos.
+    // ¿Para qué?: Asegurar que el anillo y los 4 textos de la leyenda existan en memoria.
     document.addEventListener('DOMContentLoaded', () => {
         const chart = document.getElementById('profile-ring');
         const ringPercent = document.getElementById('ring-percent');
         const ringLabel = document.getElementById('ring-label');
+        const legendContainer = document.querySelector('.composition-legend');
 
-        // ¿Por qué?: Definimos un arreglo de configuración con los 4 pilares y sus metadatos.
-        // ¿Para qué?: Mantener un código limpio (principio DRY) que además actualiza el texto central del anillo en tiempo real al hacer hover.
+        // ¿Por qué?: Agregamos las propiedades 'min' y 'max' (de 0 a 100) a cada objeto de configuración.
+        // ¿Para qué?: Definir las fronteras matemáticas exactas donde empieza y termina cada color dentro del círculo.
         const segments = [
-            { id: 'legend-tech', focusClass: 'focus-tech', percent: '40%', label: 'Tecnología' },
-            { id: 'legend-log',  focusClass: 'focus-log',  percent: '30%', label: 'Logística' },
-            { id: 'legend-art',  focusClass: 'focus-art',  percent: '20%', label: 'Arte' },
-            { id: 'legend-soft', focusClass: 'focus-soft', percent: '10%', label: 'Soft Skills' }
+            { id: 'legend-tech', focusClass: 'focus-tech', percent: '40%', label: 'Tecnología',  min: 0,  max: 40 },
+            { id: 'legend-log',  focusClass: 'focus-log',  percent: '30%', label: 'Logística',   min: 40, max: 70 },
+            { id: 'legend-art',  focusClass: 'focus-art',  percent: '20%', label: 'Arte',        min: 70, max: 90 },
+            { id: 'legend-soft', focusClass: 'focus-soft', percent: '10%', label: 'Soft Skills', min: 90, max: 100 }
         ];
 
+        // ¿Por qué?: Función centralizada para activar cualquier segmento (ya sea desde el texto o desde la gráfica).
+        // ¿Para qué?: Iluminar el color en el anillo, cambiar el porcentaje central y remarcar su texto en la leyenda inferior.
+        const activateSegment = (seg) => {
+            // 1. Iluminamos el segmento en el anillo y opacamos los otros 3 colores
+            chart.className = `composition-chart ${seg.focusClass}`;
+            
+            // 2. Actualizamos el texto grande en el centro del círculo
+            ringPercent.innerText = seg.percent;
+            ringLabel.innerText = seg.label;
+
+            // 3. Sincronizamos la leyenda inferior para que destaque el texto del color actual
+            if (legendContainer) {
+                legendContainer.classList.add('ring-hover-active');
+                segments.forEach(s => {
+                    const el = document.getElementById(s.id);
+                    if (el) {
+                        el.classList.toggle('active-slice', s.id === seg.id);
+                    }
+                });
+            }
+        };
+
+        // ¿Por qué?: Función de limpieza para restaurar el estado "100% Íntegro".
+        // ¿Para qué?: Regresar tanto el anillo como la leyenda a sus colores originales cuando el ratón sale del área.
         const resetChart = () => {
             chart.className = 'composition-chart';
             ringPercent.innerText = '100%';
             ringLabel.innerText = 'Íntegro';
+
+            if (legendContainer) {
+                legendContainer.classList.remove('ring-hover-active');
+                segments.forEach(s => {
+                    const el = document.getElementById(s.id);
+                    if (el) el.classList.remove('active-slice');
+                });
+            }
         };
 
+        // ¿Por qué?: Función matemática que traduce las coordenadas (X, Y) del mouse a un segmento de color.
+        // ¿Para qué?: Saber con precisión milimétrica si el cursor está sobre el amarillo, cian, morado o verde.
+        const getSegmentFromMouse = (e) => {
+            // Obtenemos la posición y tamaño actual del círculo en la pantalla
+            const rect = chart.getBoundingClientRect();
+            
+            // Calculamos las coordenadas exactas del centro del círculo
+            const centerX = rect.left + (rect.width / 2);
+            const centerY = rect.top + (rect.height / 2);
+
+            // Calculamos la distancia horizontal (dx) y vertical (dy) desde el centro hasta el puntero
+            const dx = e.clientX - centerX;
+            const dy = e.clientY - centerY;
+
+            // ¿Por qué?: Usamos Math.atan2(dx, -dy) convertido de radianes a grados.
+            // ¿Para qué?: Medir el ángulo empezando desde las 12 en punto (0°) y avanzando en sentido horario igual que CSS conic-gradient.
+            let angleDeg = Math.atan2(dx, -dy) * (180 / Math.PI);
+            
+            // Si el ángulo es negativo (mitad izquierda del círculo), sumamos 360° para tener una escala continua de 0° a 360°
+            if (angleDeg < 0) {
+                angleDeg += 360;
+            }
+
+            // Convertimos los grados (0° - 360°) a porcentaje del perfil (0% - 100%)
+            const hoverPercent = (angleDeg / 360) * 100;
+
+            // Buscamos y retornamos el segmento cuyo rango (min - max) contiene ese porcentaje
+            return segments.find(seg => hoverPercent >= seg.min && hoverPercent <= seg.max);
+        };
+
+        // =========================================================
+        // 1. EVENTOS AL PASAR EL MOUSE POR LOS TEXTOS DE LA LEYENDA
+        // =========================================================
         segments.forEach(seg => {
             const element = document.getElementById(seg.id);
             if (element && chart) {
-                // ¿Por qué?: Al entrar el mouse, aplicamos la clase focus correspondiente y actualizamos el centro del anillo.
-                // ¿Para qué?: Opacar los otros 3 segmentos del círculo y mostrar el porcentaje exacto de la sección activa.
-                element.addEventListener('mouseenter', () => {
-                    chart.className = `composition-chart ${seg.focusClass}`;
-                    ringPercent.innerText = seg.percent;
-                    ringLabel.innerText = seg.label;
-                });
+                element.addEventListener('mouseenter', () => activateSegment(seg));
                 element.addEventListener('mouseleave', resetChart);
             }
         });
+
+        // =========================================================
+        // 2. EVENTOS AL MOVER EL MOUSE DIRECTAMENTE SOBRE EL ANILLO
+        // =========================================================
+        if (chart) {
+            // ¿Por qué?: Escuchamos 'mousemove' en lugar de 'mouseenter'.
+            // ¿Para qué?: Detectar en tiempo real cuando el cursor viaja de un color a otro sin salir del círculo.
+            chart.addEventListener('mousemove', (e) => {
+                const activeSeg = getSegmentFromMouse(e);
+                if (activeSeg) {
+                    activateSegment(activeSeg);
+                }
+            });
+
+            // Cuando el cursor sale por completo del círculo, restauramos el 100%
+            chart.addEventListener('mouseleave', resetChart);
+
+            // ¿Por qué?: Agregamos un evento 'click' sobre el anillo.
+            // ¿Para qué?: Para que si el usuario hace clic directamente sobre el color amarillo, cian, morado o verde, navegue a esa página.
+            chart.addEventListener('click', (e) => {
+                const clickedSeg = getSegmentFromMouse(e);
+                if (clickedSeg) {
+                    const targetLink = document.getElementById(clickedSeg.id);
+                    if (targetLink && targetLink.href) {
+                        window.location.href = targetLink.href;
+                    }
+                }
+            });
+        }
     });
 </script>
 {% endblock %}
