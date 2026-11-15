@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ¿Por qué?: Cargamos la librería de iconos vectoriales Phosphor Icons en el head maestro. -->
+    <!-- ¿Para qué?: Para que cualquier página hija pueda utilizar íconos técnicos sin volver a importar el script. -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ¿Por qué?: Abrimos un bloque de Jinja2 llamado 'title'. -->
+    <!-- ¿Para qué?: Permitir que cada una de las 5 páginas personalice el título de la pestaña del navegador. -->
+    <title>{% block title %}Alejandro Monroy | Perfil Integral{% endblock %}</title>
+    
+    <!-- ¿Por qué?: Usamos url_for de Flask apuntando a 'static/css/styles.css'. -->
+    <!-- ¿Para qué?: Garantizar que la hoja de estilos cargue sin importar en qué ruta esté el usuario. -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <!-- ========================================= -->
+    <!-- ENCABEZADO FIJO Y NAVEGACIÓN MULTIPÁGINA  -->
+    <!-- ========================================= -->
+    <header class="main-header">
+        <nav class="navbar">
+            <!-- ¿Por qué?: Envolvemos el logo AHM en un enlace hacia la función 'home'. -->
+            <!-- ¿Para qué?: Cumplir con el estándar UX donde hacer clic en el logo siempre regresa al usuario al inicio. -->
+            <a href="{{ url_for('home') }}" class="logo" style="text-decoration: none;">AHM</a>
+            
+            <!-- ¿Por qué?: Contenedor del botón hamburguesa con sus tres barras. -->
+            <!-- ¿Para qué?: Mostrar el disparador del menú desplegable cuando se navega desde pantallas móviles. -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <!-- ¿Por qué?: Lista de navegación conectada mediante url_for() a las 5 funciones de app.py + condicional Jinja2. -->
+            <!-- ¿Para qué?: Navegar entre páginas reales y añadir la clase 'active-nav' al enlace de la página actual. -->
+            <ul class="nav-links">
+                <li>
+                    <a href="{{ url_for('home') }}" class="{{ 'active-nav' if active_page == 'home' else '' }}">Inicio</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('tecnologia') }}" class="{{ 'active-nav' if active_page == 'tecnologia' else '' }}">Tecnología</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('logistica') }}" class="{{ 'active-nav' if active_page == 'logistica' else '' }}">Logística</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('arte') }}" class="{{ 'active-nav' if active_page == 'arte' else '' }}">Arte</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('softskills') }}" class="{{ 'active-nav' if active_page == 'softskills' else '' }}">Soft Skills</a>
+                </li>
+                <li>
+                    <a href="#contacto">Contacto</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ========================================= -->
+    <!-- CONTENEDOR DINÁMICO DE VISTAS HIJAS       -->
+    <!-- ========================================= -->
+    <!-- ¿Por qué?: Definimos el bloque 'content' dentro de la etiqueta semántica <main>. -->
+    <!-- ¿Para qué?: Aquí es donde Flask inyectará el HTML específico de index, tecnologia, logistica, arte o softskills. -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ========================================= -->
+    <!-- PIE DE PÁGINA MAESTRO (5 REDES ACTIVAS)   -->
+    <!-- ========================================= -->
+    <footer id="contacto" class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>Alejandro Monroy</h3>
+                <p>Ingeniería de Software, Ciencia de Datos, Operaciones Logísticas B2B y Síntesis Visual.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Ecosistema</h4>
+                <a href="{{ url_for('home') }}">Hub Integral (100%)</a>
+                <a href="{{ url_for('tecnologia') }}">Tecnología & Datos (40%)</a>
+                <a href="{{ url_for('logistica') }}">Logística & Ops (30%)</a>
+                <a href="{{ url_for('arte') }}">Síntesis Visual (20%)</a>
+                <a href="{{ url_for('softskills') }}">Soft Skills & Cultura (10%)</a>
+            </div>
+
+            <div class="footer-social">
+                <h4>Conecta Conmigo</h4>
+                <div class="card">
+                    <!-- ¿Por qué?: Integramos LinkedIn usando la clase .containerLinkedin que ya existía en tu styles.css. -->
+                    <!-- ¿Para qué?: Dirigir a reclutadores y contactos corporativos a tu perfil laboral. -->
+                    <a class="socialContainer containerLinkedin" href="https://www.linkedin.com/" target="_blank" title="LinkedIn">
+                        <svg viewBox="0 0 448 512" class="socialSvg">
+                            <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
+                        </svg>
+                    </a>
+
+                    <!-- ¿Por qué?: Integramos GitHub usando la clase .containerGithub de tu styles.css. -->
+                    <!-- ¿Para qué?: Mostrar tus repositorios de código y proyectos de TripleTen. -->
+                    <a class="socialContainer containerGithub" href="https://github.com/" target="_blank" title="GitHub">
+                        <svg viewBox="0 0 496 512" class="socialSvg">
+                            <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"></path>
+                        </svg>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a class="socialContainer containerInstagram" href="#" target="_blank" title="Instagram">
+                        <svg viewBox="0 0 448 512" class="socialSvg">
+                            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+                        </svg>
+                    </a>
+
+                    <!-- WhatsApp Directo -->
+                    <a class="socialContainer containerWhatsapp" href="https://wa.me/5219987671050" target="_blank" title="WhatsApp">
+                        <svg viewBox="0 0 448 512" class="socialSvg">
+                            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-23.1-115-65-157zM223.9 413.6c-33.1 0-65.5-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.1l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Alejandro Monroy. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ========================================= -->
+    <!-- SCRIPTS GLOBALES (MENÚ MÓVIL Y CHISPAS)   -->
+    <!-- ========================================= -->
+    <script>
+        // ¿Por qué?: Escuchamos el evento DOMContentLoaded a nivel global en base.html.
+        // ¿Para qué?: Garantizar que el menú móvil y los botones de contacto animados funcionen en las 5 páginas sin duplicar código.
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. LÓGICA DEL MENÚ HAMBURGUESA ---
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileMenu && navLinks) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+
+            // --- 2. LÓGICA DE BOTONES DE CONTACTO CON EXPLOSIÓN DE CHISPAS ---
+            const botonesContacto = document.querySelectorAll('.btn-contacto-animado');
+            const elogios = ["¡Buena elección!", "¡Excelente paso!", "¡Conectemos!"];
+
+            botonesContacto.forEach(boton => {
+                boton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const urlDestino = this.href;
+
+                    // ¿Por qué?: Usamos url_for estático para la ruta del audio.
+                    // ¿Para qué?: Evitar errores 404 de ruta relativa cuando el botón se presione desde /logistica o /tecnologia.
+                    const audioExito = new Audio("{{ url_for('static', filename='audio/chispa-suave.mp3') }}");
+                    audioExito.volume = 0.2;
+                    audioExito.play().catch(() => {});
+
+                    const texto = document.createElement('span');
+                    texto.className = 'texto-elegante';
+                    texto.innerText = elogios[Math.floor(Math.random() * elogios.length)];
+                    texto.style.left = (e.pageX + 30) + 'px';
+                    texto.style.top = (e.pageY - 20) + 'px';
+                    document.body.appendChild(texto);
+
+                    for (let i = 0; i < 30; i++) {
+                        const chispa = document.createElement('div');
+                        chispa.className = 'micro-chispa';
+                        chispa.style.left = e.pageX + 'px';
+                        chispa.style.top = e.pageY + 'px';
+                        
+                        const angulo = Math.random() * Math.PI * 2;
+                        const distancia = Math.random() * 150 + 50;
+                        
+                        chispa.style.setProperty('--tx', `${Math.cos(angulo) * distancia}px`);
+                        chispa.style.setProperty('--ty', `${Math.sin(angulo) * distancia}px`);
+                        chispa.style.animation = `explosion-chispa 1.8s cubic-bezier(0.1, 1, 0.3, 1) forwards`;
+                        document.body.appendChild(chispa);
+                        
+                        setTimeout(() => chispa.remove(), 1800);
+                    }
+
+                    setTimeout(() => { window.open(urlDestino, '_blank'); }, 2000);
+                    setTimeout(() => texto.remove(), 2200);
+                });
+            });
+        });
+    </script>
+
+    <!-- ¿Por qué?: Bloque 'scripts' abierto al final del body. -->
+    <!-- ¿Para qué?: Permitir que vistas específicas (como index.html con el anillo) inyecten su propio JavaScript sin sobrecargar las demás páginas. -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>

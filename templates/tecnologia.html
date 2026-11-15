@@ -1,0 +1,277 @@
+<!-- ¿Por qué?: Heredamos la estructura maestra desde 'base.html'. -->
+<!-- ¿Para qué?: Mantener automáticamente el menú fijo superior, el pie de página y el script de chispas sin duplicar código. -->
+{% extends 'base.html' %}
+
+<!-- ¿Por qué?: Personalizamos el bloque 'title' de Jinja2. -->
+<!-- ¿Para qué?: Indicar en la pestaña del navegador que el usuario está en tu sección de Ingeniería de Software y Ciencia de Datos. -->
+{% block title %}Alejandro Monroy | 40% Tecnología, Software & Datos{% endblock %}
+
+{% block content %}
+<!-- ========================================= -->
+<!-- ENCABEZADO DE LA SECCIÓN TECNOLOGÍA (40%) -->
+<!-- ========================================= -->
+<!-- ¿Por qué?: Reutilizamos la clase 'hero-section' pero ajustando 'min-height: 60vh'. -->
+<!-- ¿Para qué?: Dar una bienvenida ejecutiva con la cuadrícula de fondo sin obligar al usuario a hacer demasiado scroll inicial. -->
+<section class="hero-section" style="min-height: 60vh; padding-top: 130px;">
+    <div class="glass-panel" style="max-width: 950px;">
+        <!-- ¿Por qué?: Etiqueta superior con el porcentaje y el color amarillo de acento. -->
+        <!-- ¿Para qué?: Conectar visualmente esta página con el segmento del 40% del anillo de la página principal. -->
+        <p style="color: var(--accent-yellow); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">
+            Pilar 01 • 40% del Perfil Integral
+        </p>
+        <h1>Ingeniería de Software & <span>Ciencia de Datos</span></h1>
+        <h2>Arquitectura Backend, Automatización B2B & Machine Learning</h2>
+        <p style="margin-bottom: 0;">
+            Diseño sistemas que resuelven problemas operativos reales. Combino orquestación de flujos autohospedados en Docker y n8n, desarrollo web en Python/Flask y modelos predictivos de datos para transformar operaciones complejas en procesos escalables.
+        </p>
+    </div>
+</section>
+
+<!-- ========================================= -->
+<!-- BLOQUE 1: ARQUITECTURA DE SOFTWARE & B2B  -->
+<!-- ========================================= -->
+<!-- ¿Por qué?: Abrimos una sección con fondo alterno 'bg-alt'. -->
+<!-- ¿Para qué?: Separar visualmente los sistemas en producción de los modelos de Ciencia de Datos. -->
+<section class="skills-section bg-alt">
+    <div class="section-container">
+        <h2 class="section-title">Sistemas B2B & Automatización en Producción</h2>
+
+        <!-- ¿Por qué?: Usamos 'detailed-cards-grid' y 'skill-category glass-panel-alt' en lugar de 'project-card'. -->
+        <!-- ¿Para qué?: Evitar que se active por error la cortina oculta de la galería de arte y mostrar todo el detalle técnico limpio. -->
+        <div class="detailed-cards-grid">
+
+            <!-- PROYECTO 1: PROYECTO GRAN BLANCO (APEX) -->
+            <article class="skill-category glass-panel-alt">
+                <h3>Proyecto Gran Blanco (Asistente Híbrido APEX)</h3>
+                <p class="project-date">2025 - Presente | TSA Comercial</p>
+                <p class="project-description">
+                    Inició como un concepto ERP y evolucionó hacia un CRM comercial, adaptándose hoy a los límites técnicos del entorno de pruebas de SAP para operar como un <strong>asistente personal operativo híbrido (entre ERP y CRM)</strong> que suma automatizaciones continuas en cada proceso viable.
+                </p>
+                <ul class="project-impact">
+                    <li>Orquestación autohospedada en Docker y n8n conectada a WhatsApp Business Cloud API oficial.</li>
+                    <li>Nodo clasificador de red silencioso con IA que retorna JSON puro y extrae contactos vía remoteJid.</li>
+                    <li>Generación de documentos con Gotenberg (100% open-source) y persistencia en PostgreSQL.</li>
+                </ul>
+                <div class="tech-stack-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">n8n</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">WhatsApp Cloud API</span>
+                    <span class="tag">SAP B1</span>
+                    <span class="tag">Gotenberg</span>
+                </div>
+            </article>
+
+            <!-- PROYECTO 2: ART-TOURS TRANSFER (ATT) -->
+            <article class="skill-category glass-panel-alt">
+                <h3>Art-Tours Transfer (SaaS Logístico B2B)</h3>
+                <p class="project-date">2026 | ART-TOURS TRANSFERS S.A. de C.V.</p>
+                <p class="project-description">
+                    Plataforma web y sistema SaaS de gestión de reservas y logística de transporte turístico e interurbano, diseñado para controlar la operación de unidades (Toyota Sienna) y automatizar confirmaciones.
+                </p>
+                <ul class="project-impact">
+                    <li>Arquitectura backend construida con Python y Flask servida mediante Gunicorn en Render.</li>
+                    <li>Generación automatizada de comprobantes con FPDF y disparo de eventos por webhooks hacia n8n.</li>
+                    <li>Base de datos relacional en PostgreSQL e interfaz dinámica en Vanilla JavaScript.</li>
+                </ul>
+                <div class="tech-stack-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Gunicorn</span>
+                    <span class="tag">Render</span>
+                    <span class="tag">Vanilla JS</span>
+                </div>
+            </article>
+
+            <!-- PROYECTO 3: BRAVE POWER STUDIO & CONSULTORÍA -->
+            <article class="skill-category glass-panel-alt">
+                <h3>Brave Power Studio & Soluciones Web B2B</h3>
+                <p class="project-date">2026 | Clientes Privados (Xalapa / Cancún)</p>
+                <p class="project-description">
+                    Desarrollo de plataforma web y sistema de administración de reservas de clases para estudio de entrenamiento en Xalapa, Veracruz, además de soluciones digitales para marcas como Sannamovement.
+                </p>
+                <ul class="project-impact">
+                    <li>Flujos de agendamiento integrados con avisos automatizados por WhatsApp.</li>
+                    <li>Diseño responsivo centrado en la conversión de usuarios y administración ágil de horarios.</li>
+                </ul>
+                <div class="tech-stack-tags">
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">WhatsApp Workflows</span>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================= -->
+<!-- BLOQUE 2: CIENCIA DE DATOS & ML           -->
+<!-- ========================================= -->
+<!-- ¿Por qué?: Sección dedicada a tu portafolio analítico y predictivo de TripleTen. -->
+<!-- ¿Para qué?: Demostrar rigor matemático, estadístico y de Machine Learning ante reclutadores de Data Science. -->
+<section class="skills-section">
+    <div class="section-container">
+        <h2 class="section-title">Ciencia de Datos & Machine Learning</h2>
+
+        <div class="detailed-cards-grid">
+
+            <!-- SPRINT 12: POZOS PETROLEROS -->
+            <article class="skill-category glass-panel-alt">
+                <h3>Evaluación de Ganancias y Riesgo Petrolero</h3>
+                <p class="project-date">Noviembre 2026 | TripleTen Sprint 12</p>
+                <p class="project-description">
+                    Modelado predictivo para seleccionar la región óptima de perforación de 200 nuevos pozos petroleros maximizando el rendimiento financiero y acotando la probabilidad de pérdidas.
+                </p>
+                <ul class="project-impact">
+                    <li>Entrenamiento de modelos de Regresión Lineal para estimar reservas de crudo por región.</li>
+                    <li>Aplicación de técnica de Bootstrapping (1,000 muestras) e intervalos de confianza del 95%.</li>
+                </ul>
+                <div class="tech-stack-tags">
+                    <span class="tag">Scikit-learn</span>
+                    <span class="tag">Bootstrapping</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">NumPy</span>
+                </div>
+            </article>
+
+            <!-- SPRINT 11: BETA BANK -->
+            <article class="skill-category glass-panel-alt">
+                <h3>Predicción de Abandono de Clientes (Beta Bank)</h3>
+                <p class="project-date">Noviembre 2026 | TripleTen Sprint 11</p>
+                <p class="project-description">
+                    Sistema de clasificación supervisada para anticipar la fuga de clientes bancarios (Churn) corrigiendo el fuerte desequilibrio de clases del conjunto de datos original.
+                </p>
+                <ul class="project-impact">
+                    <li>Comparativa de Árboles de Decisión, Bosques Aleatorios y Regresión Logística.</li>
+                    <li>Optimización de métricas F1-Score y área bajo la curva (AUC-ROC) mediante sobremuestreo (Upsampling).</li>
+                </ul>
+                <div class="tech-stack-tags">
+                    <span class="tag">Random Forest</span>
+                    <span class="tag">Upsampling</span>
+                    <span class="tag">AUC-ROC</span>
+                    <span class="tag">F1-Score</span>
+                </div>
+            </article>
+
+            <!-- SPRINTS 10, 8 Y 7: MEGALINE, ZUBER Y VEHÍCULOS -->
+            <article class="skill-category glass-panel-alt">
+                <h3>Clasificación Megaline, SQL Zuber & App EDA</h3>
+                <p class="project-date">Septiembre - Noviembre 2026 | Sprints 7, 8 y 10</p>
+                <p class="project-description">
+                    Trilogía de proyectos fundacionales abarcando desde el despliegue de aplicaciones interactivas hasta pruebas de hipótesis estadísticas y clasificación multiclase.
+                </p>
+                <ul class="project-impact">
+                    <li><strong>Sprint 10 (Megaline):</strong> Recomendación de planes móviles Smart/Ultra con Machine Learning.</li>
+                    <li><strong>Sprint 8 (Zuber Chicago):</strong> Extracción web, consultas SQL relacionales y pruebas de hipótesis climáticas.</li>
+                    <li><strong>Sprint 7 (Vehicles AHM):</strong> Análisis exploratorio (EDA) desplegado como web app en Streamlit y Render.</li>
+                </ul>
+                <div class="tech-stack-tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">SciPy</span>
+                    <span class="tag">Streamlit</span>
+                    <span class="tag">Git / GitHub</span>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================= -->
+<!-- BLOQUE 3: STACK TECNOLÓGICO & FLIP CARDS  -->
+<!-- ========================================= -->
+<!-- ¿Por qué?: Conservamos tus íconos circulares y las tarjetas giratorias 3D de tu diseño original. -->
+<!-- ¿Para qué?: Mantener esa interactividad visual en la página donde el usuario evalúa tus capacidades técnicas. -->
+<section class="skills-section bg-alt">
+    <div class="section-container">
+        <h2 class="section-title">Stack Tecnológico & Capacidades</h2>
+        
+        <div class="skills-icons-grid">
+            <a href="#detalles-backend" class="chart-anchor">
+                <div class="icon-card"><i class="ph ph-database"></i><span class="chart-label">Backend & DBs</span></div>
+            </a>
+            <a href="#detalles-infra" class="chart-anchor">
+                <div class="icon-card"><i class="ph ph-graph"></i><span class="chart-label">Infraestructura</span></div>
+            </a>
+            <a href="#detalles-frontend" class="chart-anchor">
+                <div class="icon-card"><i class="ph ph-cpu"></i><span class="chart-label">Data Science & IA</span></div>
+            </a>
+        </div>
+
+        <div class="detailed-cards-grid">
+            <div id="detalles-backend" class="skill-category glass-panel-alt">
+                <h3>Backend, Datos & DBs</h3>
+                <ul class="skill-list">
+                    <li><strong>Lenguajes:</strong> Python, SQL, JavaScript (Vanilla), VBA</li>
+                    <li><strong>Frameworks Web:</strong> Flask, Gunicorn, Streamlit</li>
+                    <li><strong>Bases de Datos:</strong> PostgreSQL, modelado relacional en DBeaver</li>
+                </ul>
+            </div>
+            <div id="detalles-infra" class="skill-category glass-panel-alt">
+                <h3>Infraestructura Autohospedada</h3>
+                <ul class="skill-list">
+                    <li><strong>Contenedores & Red:</strong> Docker, Docker Compose, Cloudflare Tunnels, Nginx</li>
+                    <li><strong>Orquestación & Docs:</strong> n8n, Gotenberg (Open-Source)</li>
+                    <li><strong>Cloud & VPS:</strong> Render, evaluación de entornos Linux en Hetzner</li>
+                </ul>
+            </div>
+            <div id="detalles-frontend" class="skill-category glass-panel-alt">
+                <h3>Ciencia de Datos, APIs & IA</h3>
+                <ul class="skill-list">
+                    <li><strong>Librerías ML/Data:</strong> Pandas, NumPy, SciPy, Scikit-learn</li>
+                    <li><strong>APIs Corporativas:</strong> Meta WhatsApp Cloud API, SAP Business One, Gemini API</li>
+                    <li><strong>Entorno Ingenieril:</strong> VS Code, WSL2, Git, GitHub, Postman</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 4rem; font-size: 1.8rem;">Áreas de Impacto</h3>
+        <div class="flip-cards-container">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="ph ph-terminal-window" style="font-size: 2.5rem; color: var(--accent-yellow); margin-bottom: 1rem;"></i>
+                        <p class="title">Data & Backend</p>
+                        <p>Python, SQL, PostgreSQL, Pandas</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="title">Impacto</p>
+                        <p>Arquitectura transaccional B2B y modelos predictivos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="ph ph-hard-drives" style="font-size: 2.5rem; color: var(--accent-yellow); margin-bottom: 1rem;"></i>
+                        <p class="title">Infraestructura</p>
+                        <p>Docker, n8n, Gotenberg, Render</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="title">Impacto</p>
+                        <p>Ecosistemas open-source autohospedados sin costos de licencias.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="ph ph-robot" style="font-size: 2.5rem; color: var(--accent-yellow); margin-bottom: 1rem;"></i>
+                        <p class="title">APIs & Agentforce</p>
+                        <p>WhatsApp Cloud, SAP B1, Gemini</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="title">Impacto</p>
+                        <p>Clasificadores silenciosos en JSON y asistencia operativa híbrida.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

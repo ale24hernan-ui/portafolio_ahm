@@ -1,0 +1,111 @@
+<!-- ¿Por qué?: Extendemos 'base.html'. -->
+<!-- ¿Para qué?: Integrar la galería de arte dentro del mismo sistema de navegación del portafolio. -->
+{% extends 'base.html' %}
+
+{% block title %}Alejandro Monroy | 20% Síntesis Visual & Obra Acrílica{% endblock %}
+
+{% block content %}
+<!-- ========================================= -->
+<!-- ENCABEZADO DE LA SECCIÓN ARTE (20%)       -->
+<!-- ========================================= -->
+<section class="hero-section" style="min-height: 60vh; padding-top: 130px;">
+    <div class="glass-panel" style="max-width: 950px;">
+        <!-- ¿Por qué?: Usamos el color índigo (#8282FF) correspondiente al 20% del anillo principal. -->
+        <!-- ¿Para qué?: Conectar cromáticamente la vista artística con la leyenda del Hub Integral. -->
+        <p style="color: #8282FF; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">
+            Pilar 03 • 20% del Perfil Integral
+        </p>
+        <h1>Síntesis Visual & <span>Obra en Acrílico</span></h1>
+        <h2>Composición, Teoría del Color y Abstracción Estructural</h2>
+        <p style="margin-bottom: 0;">
+            La pintura acrílica es mi laboratorio de observación. Entrenar el ojo para equilibrar contrastes, temperaturas y perspectivas sobre un lienzo alimenta directamente la claridad con la que diseño interfaces de usuario, visualizo datos y estructuro arquitecturas de software.
+        </p>
+    </div>
+</section>
+
+<!-- ========================================= -->
+<!-- GALERÍA INTERACTIVA (EFECTO CORTINA CSS)  -->
+<!-- ========================================= -->
+<!-- ¿Por qué?: Mantenemos la combinación exacta 'portfolio-section' + 'project-card glass-panel-alt'. -->
+<!-- ¿Para qué?: Activar el efecto cortina (translateY) y el ligero zoom que programaste al final de tu styles.css. -->
+<section id="galeria" class="portfolio-section bg-alt">
+    <div class="section-container">
+        <h2 class="section-title">Colección en Acrílico sobre Lienzo</h2>
+        
+        <div class="projects-grid">
+
+            <!-- OBRA 1: FLORERO (NATURALEZA INMORTAL) -->
+            <!-- ¿Por qué?: Añadimos 'min-height: 360px' al contenedor de cada pintura. -->
+            <!-- ¿Para qué?: Garantizar una proporción uniforme y elegante en la cuadrícula mientras la cortina de texto está oculta. -->
+            <article class="project-card glass-panel-alt" style="min-height: 360px;">
+                <img src="{{ url_for('static', filename='img/florero.jpg') }}" alt="Florero - Naturaleza Inmortal">
+                <div class="project-content">
+                    <h3>Naturaleza Inmortal (Florero)</h3>
+                    <p class="project-description">
+                        Estudio botánico en acrílico que reflexiona sobre la preservación. Una composición vibrante que invita a apreciar el equilibrio orgánico y el detalle estructural de la flora.
+                    </p>
+                </div>
+            </article>
+
+            <!-- OBRA 2: AVES EN EL PARAÍSO (ECOS DEL PARAÍSO) -->
+            <article class="project-card glass-panel-alt" style="min-height: 360px;">
+                <img src="{{ url_for('static', filename='img/avesatardecer.jpg') }}" alt="Aves en el Paraíso - Ecos del Paraíso">
+                <div class="project-content">
+                    <h3>Ecos del Paraíso (Aves en el Paraíso)</h3>
+                    <p class="project-description">
+                        Inspirada en la atmósfera narrativa de Ray Bradbury y la riqueza del ecosistema caribeño. Un contraste de temperaturas cálidas y frías que captura la serenidad del entorno.
+                    </p>
+                </div>
+            </article>
+
+            <!-- OBRA 3: CIELO EN LLAMAS -->
+            <article class="project-card glass-panel-alt" style="min-height: 360px;">
+                <img src="{{ url_for('static', filename='img/rojiso.jpg') }}" alt="Cielo en Llamas">
+                <div class="project-content">
+                    <h3>Cielo en Llamas</h3>
+                    <p class="project-description">
+                        Las nubes y el agua protagonizan la escena bajo una luna velada. Una atmósfera intensa construida mediante gradientes profundos que exploran la tensión visual y el movimiento.
+                    </p>
+                </div>
+            </article>
+
+            <!-- OBRA 4: AVE DE CEMPASÚCHIL (ILUSIÓN BOTÁNICA) -->
+            <article class="project-card glass-panel-alt" style="min-height: 360px;">
+                <img src="{{ url_for('static', filename='img/cempasuchil.jpg') }}" alt="Ave de Cempasúchil - Ilusión Botánica">
+                <div class="project-content">
+                    <h3>Ilusión Botánica (Ave de Cempasúchil)</h3>
+                    <p class="project-description">
+                        Fusión de flora y fauna impulsada por la teoría del color. El contraste tridimensional entre tonos esmeralda y el naranja vibrante genera un camuflaje orgánico lleno de vida.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================= -->
+<!-- CONEXIÓN ENTRE EL LIENZO Y LA INGENIERÍA  -->
+<!-- ========================================= -->
+<section class="skills-section">
+    <div class="section-container">
+        <h2 class="section-title">Del Lienzo a la Interfaz Digital</h2>
+
+        <div class="detailed-cards-grid">
+            <article class="skill-category glass-panel-alt">
+                <h3>Identidad Visual y Espacio de Creación</h3>
+                <p class="project-description">
+                    Mi entorno de trabajo físico —intervenido personalmente con un círculo amarillo en el muro rodeado de mis lienzos— se refleja directamente en mi firma estética digital: interfaces en <strong>Dark Mode</strong>, paneles con <strong>Glassmorphism</strong> y acentos precisos en <strong>amarillo racing</strong> que guían la atención del usuario sin saturar la vista.
+                </p>
+            </article>
+
+            <article class="skill-category glass-panel-alt">
+                <h3>Visualización de Datos y Claridad</h3>
+                <p class="project-description">
+                    En Ciencia de Datos, un gráfico mal diseñado oculta la verdad estadística. El dominio de la jerarquía visual y el contraste cromático me permite transformar matrices complejas de Pandas y Scikit-learn en tableros ejecutivos comprensibles en segundos.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}

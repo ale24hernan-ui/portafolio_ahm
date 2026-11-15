@@ -1,425 +1,179 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandro Monroy | Data Scientist & Backend Specialist</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <header class="main-header">
-        <nav class="navbar">
-            <div class="logo">AHM</div>
-            
-            <!-- NUEVO: BOTÓN HAMBURGUESA PARA MÓVILES -->
-            <!-- ¿Por qué?: Creamos un div con la clase 'menu-toggle' e id 'mobile-menu'. -->
-            <!-- ¿Para qué?: Actuará como el botón físico que el usuario tocará en su celular para abrir la navegación. -->
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+<!-- ¿Por qué?: Declaramos extends 'base.html' en la primera línea. -->
+<!-- ¿Para qué?: Indicarle a Jinja2 que esta vista debe montarse dentro del marco maestro (header y footer) de base.html. -->
+{% extends 'base.html' %}
 
-            <ul class="nav-links">
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#galeria">Proceso Visual</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- ¿Por qué?: Sobrescribimos el bloque title. -->
+<!-- ¿Para qué?: Mostrar tu posicionamiento integral en la pestaña principal del navegador. -->
+{% block title %}Alejandro Monroy | Ecosistema Profesional Íntegro{% endblock %}
 
-    <!-- SECCIÓN HERO CON PANEL DIVIDIDO -->
-    <section id="hero" class="hero-section">
-        <div class="glass-panel hero-glass">
-            
-            <!-- COLUMNA IZQUIERDA: COMPOSICIÓN DEL PERFIL -->
-            <div class="hero-metrics">
-                <h3 class="metrics-title">Composición del Perfil</h3>
-                <div class="composition-container">
-                    <div class="composition-chart">
-                        <div class="composition-inner">
-                            <span class="composition-total">100%</span>
-                            <span class="composition-label">Integral</span>
-                        </div>
-                    </div>
-                    <div class="composition-legend">
-                        <a href="#habilidades" class="legend-item" id="legend-tech">
-                            <span class="legend-color tech-color"></span>
-                            <div class="legend-text">
-                                <span class="legend-title">50% Ing. & Datos</span>
-                                <span class="legend-desc">Python, SQL, n8n, APIs</span>
-                            </div>
-                        </a>
-                        <a href="#proyectos" class="legend-item" id="legend-log">
-                            <span class="legend-color log-color"></span>
-                            <div class="legend-text">
-                                <span class="legend-title">30% Logística & Ops.</span>
-                                <span class="legend-desc">Supply Chain, KPIs</span>
-                            </div>
-                        </a>
-                        <a href="#galeria" class="legend-item" id="legend-art">
-                            <span class="legend-color art-color"></span>
-                            <div class="legend-text">
-                                <span class="legend-title">20% Síntesis Visual</span>
-                                <span class="legend-desc">Estructura, Diseño, Arte</span>
-                            </div>
-                        </a>
+{% block content %}
+<!-- ========================================= -->
+<!-- SECCIÓN HERO CON ANILLO DE 4 SEGMENTOS    -->
+<!-- ========================================= -->
+<section id="hero" class="hero-section">
+    <div class="glass-panel hero-glass">
+        
+        <!-- COLUMNA IZQUIERDA: COMPOSICIÓN DEL PERFIL (40 / 30 / 20 / 10) -->
+        <div class="hero-metrics">
+            <h3 class="metrics-title">Composición del Perfil</h3>
+            <div class="composition-container">
+                
+                <!-- ¿Por qué?: Contenedor del anillo gobernado por conic-gradient en CSS y clases dinámicas JS. -->
+                <!-- ¿Para qué?: Iluminar individualmente el segmento activo mientras el resto se atenúa al pasar el cursor. -->
+                <div class="composition-chart" id="profile-ring">
+                    <div class="composition-inner">
+                        <span class="composition-total" id="ring-percent">100%</span>
+                        <span class="composition-label" id="ring-label">Íntegro</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- COLUMNA DERECHA: PRESENTACIÓN PRINCIPAL -->
-            <div class="hero-content">
-                
-                <h1>Hola, soy <span>Alejandro Monroy</span></h1>
-                <h2>Data Scientist & Backend Integration Specialist</h2>
-                <p>Construyo arquitecturas robustas, automatizo operaciones comerciales y diseño integraciones backend precisas para optimizar procesos a escala.</p>
-                
-                <div class="cta-container">
-                    <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
-                    <!-- BOTÓN 2: SE AÑADIÓ btn-contacto-animado -->
-                    <a href="https://wa.me/5219987671050?text=Hola%20Alejandro,%20he%20visto%20tu%20portafolio%20técnico%20y%20me%20gustaría%20contactarte." 
-                       class="btn btn-secondary btn-contacto-animado">
-                       Contactar
+                <!-- ¿Por qué?: Cada elemento de la leyenda ahora apunta con url_for() a su propia ruta de Flask. -->
+                <!-- ¿Para qué?: Convertir la leyenda del gráfico en un menú interactivo hacia las 4 dimensiones de tu perfil. -->
+                <div class="composition-legend">
+                    <a href="{{ url_for('tecnologia') }}" class="legend-item" id="legend-tech">
+                        <span class="legend-color tech-color"></span>
+                        <div class="legend-text">
+                            <span class="legend-title">40% Software & Datos</span>
+                            <span class="legend-desc">Python, SQL, Docker, n8n, ML</span>
+                        </div>
+                    </a>
+
+                    <a href="{{ url_for('logistica') }}" class="legend-item" id="legend-log">
+                        <span class="legend-color log-color"></span>
+                        <div class="legend-text">
+                            <span class="legend-title">30% Logística B2B</span>
+                            <span class="legend-desc">Almacén Mayorista, Supply Chain, KPIs</span>
+                        </div>
+                    </a>
+
+                    <a href="{{ url_for('arte') }}" class="legend-item" id="legend-art">
+                        <span class="legend-color art-color"></span>
+                        <div class="legend-text">
+                            <span class="legend-title">20% Síntesis Visual</span>
+                            <span class="legend-desc">Pintura Acrílica, Composición, UI</span>
+                        </div>
+                    </a>
+
+                    <a href="{{ url_for('softskills') }}" class="legend-item" id="legend-soft">
+                        <span class="legend-color soft-color"></span>
+                        <div class="legend-text">
+                            <span class="legend-title">10% Soft Skills & Cultura</span>
+                            <span class="legend-desc">Liderazgo, Filosofía, Ejecución</span>
+                        </div>
                     </a>
                 </div>
             </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: MANIFIESTO PERSONAL E INTEGRAL -->
+        <div class="hero-content">
+            <h1>Hola, soy <span>Alejandro Monroy</span></h1>
+            <h2>Ingeniería de Software, Ciencia de Datos & Operaciones B2B</h2>
+            <p>
+                Soy un profesional íntegro que conecta el mundo físico con el lógico. Lidero operaciones de almacén mayorista B2B, construyo arquitecturas de automatización y modelos de datos para resolver cuellos de botella reales, y aplico la síntesis del arte y el liderazgo humano en cada sistema que diseño.
+            </p>
             
-        </div>
-    </section>
-
-    <!-- SECCIÓN: PROYECTOS DESTACADOS -->
-    <section id="proyectos" class="portfolio-section">
-        <div class="section-container">
-            <h2 class="section-title">Casos de Estudio Técnicos</h2>
-            <div class="projects-grid">
-                <article class="project-card glass-panel-alt">
-                    <div class="project-content">
-                        <h3>Proyecto Gran Blanco (B2B CRM & Automated Architecture)</h3>
-                        <p class="project-date">Enero 2026 - Presente | TSA Comercial / Indep.</p>
-                        <p class="project-description">Arquitectura de mensajería empresarial B2B automatizada mediante WhatsApp Cloud API, integrada con base de datos PostgreSQL, Docker, flujos orquestados en n8n, Python y SAP Business One.</p>
-                        <h4>Impacto & Resultados:</h4>
-                        <ul class="project-impact">
-                            <li>Reducción drástica del tiempo de respuesta a cuentas corporativas.</li>
-                            <li>Autogestión de consultas, catálogos y operaciones de carrito para clientes B2B.</li>
-                        </ul>
-                        <div class="tech-stack-tags">
-                            <span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">n8n</span>
-                            <span class="tag">Docker</span><span class="tag">WhatsApp API</span><span class="tag">Gemini API</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card glass-panel-alt">
-                    <div class="project-content">
-                        <h3>Optimización Logística (Supply Chain & Warehousing)</h3>
-                        <p class="project-date">2026 | TripleTen Sprint 8</p>
-                        <p class="project-description">Modelado de bases de datos relacionales, extracción (web scraping) y análisis de métricas clave (KPIs) de inventario para la toma de decisiones basada en datos.</p>
-                        <h4>Impacto & Resultados:</h4>
-                        <ul class="project-impact">
-                            <li>Consolidación de un entorno de datos optimizado listo para machine learning.</li>
-                            <li>Identificación y reducción de cuellos de botella operativos mediante análisis de variables complejas.</li>
-                        </ul>
-                        <div class="tech-stack-tags">
-                            <span class="tag">SQL</span><span class="tag">DBeaver</span><span class="tag">Pandas</span>
-                            <span class="tag">Bases de Datos Relacionales</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN: HABILIDADES TÉCNICAS -->
-    <section id="habilidades" class="skills-section bg-alt">
-        <div class="section-container">
-            <h2 class="section-title">Stack Tecnológico & Capacidades</h2>
-            <div class="skills-icons-grid">
-                <a href="#detalles-backend" class="chart-anchor">
-                    <div class="icon-card"><i class="ph ph-database"></i><span class="chart-label">Backend & DBs</span></div>
-                </a>
-                <a href="#detalles-infra" class="chart-anchor">
-                    <div class="icon-card"><i class="ph ph-graph"></i><span class="chart-label">Infraestructura</span></div>
-                </a>
-                <a href="#detalles-frontend" class="chart-anchor">
-                    <div class="icon-card"><i class="ph ph-cpu"></i><span class="chart-label">Frontend & IA</span></div>
+            <div class="cta-container">
+                <a href="#pilares" class="btn btn-primary">Explorar Ecosistema</a>
+                <a href="https://wa.me/5219987671050?text=Hola%20Alejandro,%20he%20visto%20tu%20portafolio%20integral%20y%20me%20gustaría%20contactarte." 
+                   class="btn btn-secondary btn-contacto-animado">
+                   Contactar
                 </a>
             </div>
-
-            <div class="detailed-cards-grid">
-                <div id="detalles-backend" class="skill-category glass-panel-alt">
-                    <h3>Backend, Datos & DBs</h3>
-                    <ul class="skill-list">
-                        <li><strong>Lenguajes:</strong> Python, SQL, JavaScript</li>
-                        <li><strong>Frameworks:</strong> Flask</li>
-                        <li><strong>Bases de Datos:</strong> PostgreSQL, MySQL</li>
-                        <li><strong>Data Science:</strong> Pandas, NumPy, Matplotlib, Seaborn</li>
-                    </ul>
-                </div>
-                <div id="detalles-infra" class="skill-category glass-panel-alt">
-                    <h3>Infraestructura & Integraciones</h3>
-                    <ul class="skill-list">
-                        <li><strong>DevOps/Infra:</strong> Docker, Render, Cloudflare, Linux</li>
-                        <li><strong>Orquestación:</strong> n8n</li>
-                        <li><strong>APIs:</strong> WhatsApp Cloud, Gemini, SAP Business One</li>
-                    </ul>
-                </div>
-                <div id="detalles-frontend" class="skill-category glass-panel-alt">
-                    <h3>Frontend, Herramientas & IA</h3>
-                    <ul class="skill-list">
-                        <li><strong>IA:</strong> Prompt Engineering, Integración LLMs</li>
-                        <li><strong>Entornos:</strong> VS Code, Git, GitHub, DBeaver</li>
-                        <li><strong>Frontend:</strong> HTML5 Semántico, CSS3 Moderno</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3 class="section-title" style="margin-top: 4rem; font-size: 1.8rem;">Áreas de Impacto</h3>
-            <div class="flip-cards-container">
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="ph ph-terminal-window" style="font-size: 2.5rem; color: var(--accent-yellow); margin-bottom: 1rem;"></i>
-                            <p class="title">Data & Backend</p><p>Python, SQL, PostgreSQL, Pandas</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p class="title">Impacto</p><p>Arquitectura B2B y análisis relacional.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="ph ph-hard-drives" style="font-size: 2.5rem; color: var(--accent-yellow); margin-bottom: 1rem;"></i>
-                            <p class="title">Infraestructura</p><p>Docker, n8n, Render</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p class="title">Impacto</p><p>Despliegue de servidores locales y orquestación.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="ph ph-robot" style="font-size: 2.5rem; color: var(--accent-yellow); margin-bottom: 1rem;"></i>
-                            <p class="title">APIs & Agentforce</p><p>WhatsApp, SAP B1, Gemini API</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p class="title">Impacto</p><p>Integración de LLMs y automatización asistida.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </section>
+        
+    </div>
+</section>
 
-    <!-- SCRIPT DE INTERACTIVIDAD CENTRALIZADO -->
-    <script>
-        // ¿Por qué?: DOMContentLoaded encapsula toda la ejecución.
-        // ¿Para qué?: Asegura que el HTML exista en memoria antes de que JavaScript intente manipular o buscar elementos, evitando errores de null.
-        document.addEventListener('DOMContentLoaded', () => {
+<!-- ========================================= -->
+<!-- SECCIÓN: LOS 4 PILARES DE MI CULTURA      -->
+<!-- ========================================= -->
+<section id="pilares" class="portfolio-section bg-alt">
+    <div class="section-container">
+        <h2 class="section-title">Un Perfil, Cuatro Dimensiones</h2>
+        
+        <!-- ¿Por qué?: Cuadrícula de tarjetas ejecutivas con clase 'hub-card' (independiente del efecto cortina de la galería). -->
+        <!-- ¿Para qué?: Presentar el resumen de cada área y ofrecer un acceso claro a cada página interna. -->
+        <div class="detailed-cards-grid">
             
-            // --- LÓGICA DE LA GRÁFICA DEL HERO ---
-            const chart = document.querySelector('.composition-chart');
-            const itemTech = document.getElementById('legend-tech');
-            const itemLog = document.getElementById('legend-log');
-            const itemArt = document.getElementById('legend-art');
+            <!-- PILAR 1: TECNOLOGÍA (40%) -->
+            <article class="skill-category glass-panel-alt">
+                <h3><i class="ph ph-terminal-window" style="color: var(--accent-yellow); margin-right: 8px;"></i> 40% Tecnología & Datos</h3>
+                <p class="project-description">
+                    Desarrollo de ecosistemas híbridos de automatización (Proyecto Gran Blanco / APEX), plataformas SaaS en Flask/PostgreSQL y modelos predictivos de Machine Learning.
+                </p>
+                <a href="{{ url_for('tecnologia') }}" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">Ver Arquitectura y Código →</a>
+            </article>
 
-            const resetChart = () => { chart.className = 'composition-chart'; };
+            <!-- PILAR 2: LOGÍSTICA (30%) -->
+            <article class="skill-category glass-panel-alt">
+                <h3><i class="ph ph-package" style="color: #00E5FF; margin-right: 8px;"></i> 30% Logística Mayorista</h3>
+                <p class="project-description">
+                    Jefe de Almacén en TSA Comercial. Gestión de distribución B2B bajo pedido, planeación de la demanda, auditorías corporativas de inventario y control de KPIs operativos.
+                </p>
+                <a href="{{ url_for('logistica') }}" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">Ver Trayectoria Operativa →</a>
+            </article>
 
-            itemTech.addEventListener('mouseenter', () => chart.classList.add('focus-tech'));
-            itemTech.addEventListener('mouseleave', resetChart);
-            itemLog.addEventListener('mouseenter', () => chart.classList.add('focus-log'));
-            itemLog.addEventListener('mouseleave', resetChart);
-            itemArt.addEventListener('mouseenter', () => chart.classList.add('focus-art'));
-            itemArt.addEventListener('mouseleave', resetChart);
+            <!-- PILAR 3: ARTE (20%) -->
+            <article class="skill-category glass-panel-alt">
+                <h3><i class="ph ph-palette" style="color: #8282FF; margin-right: 8px;"></i> 20% Síntesis Visual</h3>
+                <p class="project-description">
+                    Pintura acrílica sobre lienzo. La observación de la naturaleza, la teoría del color y el contraste visual entrenan mi mente para diseñar interfaces limpias y estructuradas.
+                </p>
+                <a href="{{ url_for('arte') }}" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">Explorar Galería de Obra →</a>
+            </article>
 
-            // --- LÓGICA DE BOTONES ANIMADOS (CONTACTO) ---
-            // ¿Por qué?: querySelectorAll en lugar de getElementById.
-            // ¿Para qué?: Para seleccionar TODOS los botones con la clase 'btn-contacto-animado' y no solo el primero que encuentre.
-            const botonesContacto = document.querySelectorAll('.btn-contacto-animado');
-            const elogios = ["¡Buena elección!", "¡Good job!", "¡Excelente!"];
+            <!-- PILAR 4: SOFT SKILLS (10%) -->
+            <article class="skill-category glass-panel-alt">
+                <h3><i class="ph ph-compass" style="color: #10B981; margin-right: 8px;"></i> 10% Cultura & Liderazgo</h3>
+                <p class="project-description">
+                    Mi sistema operativo humano: relaciones constructivas (Dale Carnegie), enfoque a resultados (Seminario Fénix) y resiliencia estoica aplicada a la dirección de equipos.
+                </p>
+                <a href="{{ url_for('softskills') }}" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">Conocer Filosofía de Trabajo →</a>
+            </article>
 
-            // ¿Por qué?: forEach itera sobre el NodeList.
-            // ¿Para qué?: Para aplicar el bloque de eventos a cada botón encontrado en el paso anterior de manera individual.
-            botonesContacto.forEach(boton => {
-                boton.addEventListener('click', function(e) {
-                    // ¿Por qué?: preventDefault bloquea la acción nativa de <a>.
-                    // ¿Para qué?: Para pausar la redirección inmediata, dándonos el margen de tiempo para dibujar las chispas.
-                    e.preventDefault(); 
-                    
-                    // ¿Por qué?: this.href captura la URL dinámicamente del botón que fue presionado.
-                    // ¿Para qué?: Guardar el destino exacto (tu link de WA) para inyectarlo en el setTimeout.
-                    const urlDestino = this.href;
+        </div>
+    </div>
+</section>
+{% endblock %}
 
-                    // ¿Por qué?: Instanciamos Audio y bajamos el volumen al 0.2.
-                    // ¿Para qué?: Para disparar una retroalimentación sutil (20% de volumen) que mejore el UX sin abrumar.
-                    const audioExito = new Audio('static/audio/chispa-suave.mp3'); 
-                    audioExito.volume = 0.2;
-                    audioExito.play().catch(e => console.log('El audio requiere interacción previa'));
+{% block scripts %}
+<script>
+    // ¿Por qué?: Encapsulamos la lógica del anillo únicamente en el bloque scripts de index.html.
+    // ¿Para qué?: Evitar errores de referencias nulas en las páginas internas donde el gráfico circular no está presente.
+    document.addEventListener('DOMContentLoaded', () => {
+        const chart = document.getElementById('profile-ring');
+        const ringPercent = document.getElementById('ring-percent');
+        const ringLabel = document.getElementById('ring-label');
 
-                    // ¿Por qué?: Creamos dinámicamente un nodo <span>.
-                    // ¿Para qué?: Para construir el contenedor que alojará el elogio de retroalimentación.
-                    const texto = document.createElement('span');
-                    texto.className = 'texto-elegante';
-                    texto.innerText = elogios[Math.floor(Math.random() * elogios.length)];
-                    
-                    // ¿Por qué?: Envolvemos e.pageX en paréntesis y le sumamos 30 píxeles.
-                    // ¿Para qué?: Para desplazar físicamente el punto de origen hacia la derecha del cursor, sacando el texto del área visual del botón.
-                    texto.style.left = (e.pageX + 30) + 'px';
-                    
-                    // ¿Por qué?: Envolvemos e.pageY en paréntesis y le restamos 20 píxeles.
-                    // ¿Para qué?: Para elevar el texto desde su nacimiento (en la web web, restar en Y significa subir), colocándolo en la esquina superior derecha deseada.
-                    texto.style.top = (e.pageY - 20) + 'px';
-                    
-                    // ¿Por qué?: Inyectamos el nodo modificado en el cuerpo del documento.
-                    // ¿Para qué?: Para que el navegador renderice la animación con las nuevas coordenadas descentradas.
-                    document.body.appendChild(texto);
+        // ¿Por qué?: Definimos un arreglo de configuración con los 4 pilares y sus metadatos.
+        // ¿Para qué?: Mantener un código limpio (principio DRY) que además actualiza el texto central del anillo en tiempo real al hacer hover.
+        const segments = [
+            { id: 'legend-tech', focusClass: 'focus-tech', percent: '40%', label: 'Tecnología' },
+            { id: 'legend-log',  focusClass: 'focus-log',  percent: '30%', label: 'Logística' },
+            { id: 'legend-art',  focusClass: 'focus-art',  percent: '20%', label: 'Arte' },
+            { id: 'legend-soft', focusClass: 'focus-soft', percent: '10%', label: 'Soft Skills' }
+        ];
 
-                    // ¿Por qué?: Bucle for de 10 iteraciones.
-                    // ¿Para qué?: Generar y animar las 10 micro-chispas visuales alrededor del cursor.
-                    // ¿Por qué?: Aumentamos a 30 iteraciones.
-                    // ¿Para qué?: Un fuego artificial real necesita alta densidad. 30 partículas crean una explosión volumétrica innegable.
-                    for (let i = 0; i < 30; i++) {
-                        const chispa = document.createElement('div');
-                        chispa.className = 'micro-chispa';
-                        chispa.style.left = e.pageX + 'px';
-                        chispa.style.top = e.pageY + 'px';
-                        
-                        const angulo = Math.random() * Math.PI * 2;
-                        
-                        // ¿Por qué?: Multiplicamos por 150 y sumamos 50.
-                        // ¿Para qué?: Radio masivo. Las chispas ahora viajarán entre 50px y 200px de distancia desde el centro del clic.
-                        const distancia = Math.random() * 150 + 50;
-                        
-                        chispa.style.setProperty('--tx', `${Math.cos(angulo) * distancia}px`);
-                        chispa.style.setProperty('--ty', `${Math.sin(angulo) * distancia}px`);
-                        
-                        // ¿Por qué?: Tiempo a 1.8s con curva "ease-out" pronunciada (0.1, 1, 0.3, 1).
-                        // ¿Para qué?: La explosión sale disparada muy rápido al inicio y se frena suavemente al final, como la pólvora real.
-                        chispa.style.animation = `explosion-chispa 1.8s cubic-bezier(0.1, 1, 0.3, 1) forwards`;
-                        document.body.appendChild(chispa);
-                        
-                        // Sincronizamos la limpieza con los 1800ms que dura la animación.
-                        setTimeout(() => chispa.remove(), 1800);
-                    }
+        const resetChart = () => {
+            chart.className = 'composition-chart';
+            ringPercent.innerText = '100%';
+            ringLabel.innerText = 'Íntegro';
+        };
 
-                    // ¿Por qué?: Subimos el tiempo de redirección a 2000 milisegundos (2 segundos).
-                    // ¿Para qué?: Para darle al usuario el tiempo físico de observar la explosión completa de 1.8s antes de que la pestaña se desenfoque.
-                    setTimeout(() => {
-                        window.open(urlDestino, '_blank');
-                    }, 2000);
-
-                    // ... (Aquí termina el setTimeout de 2200 de las chispas)
-                    setTimeout(() => texto.remove(), 2200);
+        segments.forEach(seg => {
+            const element = document.getElementById(seg.id);
+            if (element && chart) {
+                // ¿Por qué?: Al entrar el mouse, aplicamos la clase focus correspondiente y actualizamos el centro del anillo.
+                // ¿Para qué?: Opacar los otros 3 segmentos del círculo y mostrar el porcentaje exacto de la sección activa.
+                element.addEventListener('mouseenter', () => {
+                    chart.className = `composition-chart ${seg.focusClass}`;
+                    ringPercent.innerText = seg.percent;
+                    ringLabel.innerText = seg.label;
                 });
-            });
-
-            // =========================================
-            // LÓGICA DEL MENÚ HAMBURGUESA (MÓVILES)
-            // =========================================
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinks = document.querySelector('.nav-links');
-
-            if (mobileMenu && navLinks) {
-                mobileMenu.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                });
-
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('active');
-                    });
-                });
+                element.addEventListener('mouseleave', resetChart);
             }
-            // =========================================
-            // FIN LÓGICA DEL MENÚ HAMBURGUESA
-            // =========================================
-
-        }); // <-- Esta es la última llave original que cierra el DOMContentLoaded
-    </script>
-
-    <!-- ========================================= -->
-    <!-- SECCIÓN: GALERÍA DE PROCESO VISUAL -->
-    <!-- ========================================= -->
-    
-    <!-- ¿Por qué?: Contenedor semántico principal de la galería. -->
-    <!-- ¿Para qué?: Aislar el código de esta sección y permitir la navegación por anclas desde el menú. -->
-    <section id="galeria" class="portfolio-section bg-alt">
-        <div class="section-container">
-            <h2 class="section-title">Síntesis y Proceso Visual</h2>
-            
-            <div class="projects-grid">
-
-                <!-- TARJETA 1: FLORERO -->
-                <!-- ¿Por qué?: Estructura simplificada que depende del CSS para superponer los elementos. -->
-                <!-- ¿Para qué?: Preparar el DOM para el efecto de Hover Glassmorphism. -->
-                <article class="project-card glass-panel-alt">
-                    <img src="{{ url_for('static', filename='img/florero.jpg') }}" alt="Naturaleza Inmortal">
-                    <div class="project-content">
-                        <h3>Naturaleza Inmortal</h3>
-                        <p class="project-description">Estudio botánico de alta complejidad que reflexiona sobre la preservación. Una composición vibrante que invita a apreciar la belleza en su entorno de origen.</p>
-                    </div>
-                </article>
-
-                <!-- TARJETA 2: AVES AL ATARDECER -->
-                <article class="project-card glass-panel-alt">
-                    <img src="{{ url_for('static', filename='img/avesatardecer.jpg') }}" alt="Ecos del Paraíso">
-                    <div class="project-content">
-                        <h3>Ecos del Paraíso</h3>
-                        <p class="project-description">Inspirada en la inmersiva narrativa de Ray Bradbury y la riqueza del ecosistema caribeño. Un contraste de temperaturas que captura la esencia pura del entorno natural.</p>
-                    </div>
-                </article>
-
-                <!-- TARJETA 3: PAISAJE ROJIZO -->
-                <article class="project-card glass-panel-alt">
-                    <img src="{{ url_for('static', filename='img/rojiso.jpg') }}" alt="Cielo en Llamas">
-                    <div class="project-content">
-                        <h3>Cielo en Llamas</h3>
-                        <p class="project-description">Las nubes son protagonistas bajo una luna velada, ocultando un conflicto visual a plena vista. Atmósfera intensa construida mediante fuertes gradientes de color.</p>
-                    </div>
-                </article>
-
-                <!-- TARJETA 4: CEMPASÚCHIL -->
-                <article class="project-card glass-panel-alt">
-                    <img src="{{ url_for('static', filename='img/cempasuchil.jpg') }}" alt="Ilusión Botánica">
-                    <div class="project-content">
-                        <h3>Ilusión Botánica</h3>
-                        <p class="project-description">Fusión magistral de flora y fauna impulsada por la teoría del color. El contraste tridimensional entre el esmeralda y el vibrante naranja crea un camuflaje orgánico fascinante.</p>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN: PIE DE PÁGINA -->
-    <footer id="contacto" class="main-footer">
-        <div class="footer-social">
-            <h4>Redes Profesionales</h4>
-            <div class="card">
-                <a class="socialContainer containerInstagram" href="#" target="_blank">
-                    <svg viewBox="0 0 448 512" class="socialSvg">
-                        <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
-                    </svg>
-                </a>
-                <a class="socialContainer containerFacebook" href="#" target="_blank">
-                    <svg viewBox="0 0 320 512" class="socialSvg">
-                        <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
-                    </svg>
-                </a>
-                <a class="socialContainer containerWhatsapp" href="https://wa.me/5219987671050" target="_blank">
-                    <svg viewBox="0 0 448 512" class="socialSvg">
-                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-23.1-115-65-157zM223.9 413.6c-33.1 0-65.5-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.1l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Alejandro Hernandez Monroy. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-</body>
-</html>
+        });
+    });
+</script>
+{% endblock %}
